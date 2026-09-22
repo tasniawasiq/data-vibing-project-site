@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Vibing Hub | CIS 5040 Team Charter & Journal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ghBg: '#0d1117',
+                        ghBorder: '#30363d',
+                        ghCard: '#161b22',
+                        neonTeal: '#00F0FF',
+                        peacockBlue: '#0077b6',
+                        electricGreen: '#39ff14',
+                        accentPurple: '#a855f7',
+                        accentOrange: '#f97316'
+                    },
+                    fontFamily: {
+                        heading: ['Merriweather', 'serif'],
+                        body: ['Lora', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Lora', serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+            color: #00F0FF;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1117; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF; 
+        }
+
+        /* Neon Glow Effects */
+        .glow-hover-teal:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            border-color: #00F0FF;
+        }
+        .glow-hover-green:hover {
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+            border-color: #39ff14;
+        }
+
+        /* Glassmorphism for Modals */
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid #30363d;
+        }
+        
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tag-badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-neonTeal selection:text-ghBg">
+
+    <nav class="border-b border-ghBorder bg-ghBg/90 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-10 h-10 rounded-full border-2 border-neonTeal flex items-center justify-center bg-gradient-to-br from-peacockBlue to-ghCard shadow-[0_0_12px_#00F0FF]">
+                        <span class="font-heading font-bold text-white text-lg">DV</span>
+                    </div>
+                    <div>
+                        <span class="font-heading font-bold text-lg text-white tracking-wide block leading-tight">Data Vibing Hub</span>
+                        <span class="text-xs text-neonTeal font-sans tracking-wider block">CIS 5040 • Human-Centered Design</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div id="user-info" class="hidden items-center gap-3 bg-ghCard px-3 py-1.5 rounded-full border border-ghBorder">
+                        <img id="user-avatar" src="" alt="Avatar" class="w-7 h-7 rounded-full border border-electricGreen shadow-[0_0_8px_#39ff14]">
+                        <span id="user-name" class="text-xs font-medium text-gray-200 hidden sm:block"></span>
+                    </div>
+                    <button id="auth-btn" class="px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 border border-neonTeal text-white hover:bg-neonTeal hover:text-ghBg glow-hover-teal">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-12">
+        
+        <!-- Header / Intro Section -->
+        <div class="text-center space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ghCard border border-ghBorder text-xs text-neonTeal mb-2">
+                <span class="w-2 h-2 rounded-full bg-electricGreen animate-pulse"></span>
+                CIS 5040 · Human-Centered Design
+            </div>
+            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white tracking-tight">Data <span class="text-neonTeal">Vibing.</span></h1>
+            <div class="h-1 w-24 bg-gradient-to-r from-neonTeal via-peacockBlue to-electricGreen mx-auto rounded-full shadow-[0_0_10px_#00F0FF]"></div>
+            <p class="text-gray-300 font-body text-base md:text-lg max-w-2xl mx-auto">
+                A four-person team came together to provide an IT solution to you!
+            </p>
+            
+            <!-- Metadata Card -->
+            <div class="max-w-md mx-auto mt-6 bg-ghCard border border-ghBorder rounded-xl p-4 flex items-center justify-around text-xs font-sans text-gray-300 shadow-md">
+                <div class="flex items-center gap-1.5 font-bold text-white">
+                    <span>📋</span> Team Charter
+                </div>
+                <div class="text-gray-400">
+                    Created Sept 7, 2026
+                </div>
+                <div class="flex items-center gap-1 text-electricGreen font-medium">
+                    <span class="w-2 h-2 rounded-full bg-electricGreen animate-pulse"></span> Week 3 of 17 complete
+                </div>
+            </div>
+        </div>
+
+        <!-- Single Column Stacked Team Charter Sections -->
+        <div class="space-y-6">
+            
+            <!-- Section 1: The Squad -->
+            <section class="bg-ghCard border border-ghBorder rounded-xl p-6 md:p-8 transition-all duration-300 glow-hover-teal">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl p-2 rounded-lg bg-ghBg border border-ghBorder">👩‍💻</span>
+                    <div>
+                        <h2 class="text-2xl font-heading font-bold text-neonTeal">The Squad</h2>
+                        <p class="text-xs text-gray-400 font-sans">CIS 5040 Project Team Members</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-300 font-body">
+                    <div class="p-4 rounded-lg bg-ghBg border border-ghBorder flex items-center justify-between group hover:border-neonTeal transition-colors">
+                        <span class="font-bold text-white text-base">Daniel Ramirez</span>
+                        <span class="text-xs text-neonTeal font-sans bg-ghCard px-2 py-1 rounded border border-ghBorder">Member</span>
+                    </div>
+                    <div class="p-4 rounded-lg bg-ghBg border border-ghBorder flex items-center justify-between group hover:border-neonTeal transition-colors">
+                        <span class="font-bold text-white text-base">Eric Harris</span>
+                        <span class="text-xs text-neonTeal font-sans bg-ghCard px-2 py-1 rounded border border-ghBorder">Member</span>
+                    </div>
+                    <div class="p-4 rounded-lg bg-ghBg border border-ghBorder flex items-center justify-between group hover:border-neonTeal transition-colors">
+                        <span class="font-bold text-white text-base">Robert Zepeda</span>
+                        <span class="text-xs text-neonTeal font-sans bg-ghCard px-2 py-1 rounded border border-ghBorder">Member</span>
+                    </div>
+                    <div class="p-4 rounded-lg bg-ghBg border border-ghBorder flex items-center justify-between group hover:border-neonTeal transition-colors">
+                        <span class="font-bold text-white text-base">Tasnia Binte Wasiq</span>
+                        <span class="text-xs text-neonTeal font-sans bg-ghCard px-2 py-1 rounded border border-ghBorder">Member</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Our Mission -->
+            <section class="bg-ghCard border border-ghBorder rounded-xl p-6 md:p-8 transition-all duration-300 glow-hover-teal">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl p-2 rounded-lg bg-ghBg border border-ghBorder">🎯</span>
+                    <div>
+                        <h2 class="text-2xl font-heading font-bold text-neonTeal">Our Mission</h2>
+                        <p class="text-xs text-gray-400 font-sans">Empowering Client Operations</p>
+                    </div>
+                </div>
+                <div class="text-gray-300 space-y-4 font-body leading-relaxed">
+                    <p class="text-base sm:text-lg">
+                        Provide a solution for our client to ensure they track their data accurately. We want to create something that they use regularly that will help them have a profitable business, tackle operational and financial hurdles, and track immediate successes that the tool creates for our client.
+                    </p>
+                    <div class="p-4 rounded-lg bg-ghBg border border-ghBorder border-l-4 border-l-electricGreen flex items-start gap-3">
+                        <span class="text-xl">✨</span>
+                        <div>
+                            <strong class="text-white block text-sm font-heading mb-1">Human-Centered Focus</strong>
+                            <p class="text-sm text-gray-300">Empowering informed decision-making, driving profitability, and optimizing day-to-day business efficiency through empathetic design and user-driven insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Communication & Rules -->
+            <section class="bg-ghCard border border-ghBorder rounded-xl p-6 md:p-8 transition-all duration-300 glow-hover-teal">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl p-2 rounded-lg bg-ghBg border border-ghBorder">📱</span>
+                    <div>
+                        <h2 class="text-2xl font-heading font-bold text-neonTeal">Communication & Rules</h2>
+                        <p class="text-xs text-gray-400 font-sans">Protocols for Team Alignment</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-body">
+                    <div class="p-4 rounded-lg bg-ghBg border border-ghBorder space-y-2">
+                        <h3 class="font-heading font-bold text-white text-sm flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-neonTeal"></span> Platform & Response
+                        </h3>
+                        <p class="text-sm text-gray-300"><strong>Platform:</strong> Group Text / iMessage</p>
+                        <p class="text-sm text-gray-300"><strong>Response Time:</strong> Before end of day (10:00 PM) unless deadline is tight; response within a couple of hours during rush periods.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-ghBg border border-ghBorder space-y-2">
+                        <h3 class="font-heading font-bold text-white text-sm flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-peacockBlue"></span> Meetings & Decisions
+                        </h3>
+                        <p class="text-sm text-gray-300"><strong>Meetings:</strong> Friday @ 5:30 / 6:00 PM (Zoom). Scheduling conflicts managed via group text.</p>
+                        <p class="text-sm text-gray-300"><strong>Decision-Making:</strong> Majority vote wins. Disagreements resolved through constructive debate or re-voting.</p>
+                    </div>
+                </div>
+                <div class="mt-4 p-4 rounded-lg bg-ghBg border border-ghBorder text-sm text-gray-300">
+                    <strong>Participation & Deadlines:</strong> Attend all Zoom meetings, respond promptly, and complete assigned tasks on schedule. Ensure the team meets at least once before any class or internal deliverable deadline.
+                </div>
+            </section>
+
+            <!-- Section 4: Having Our Backs -->
+            <section class="bg-ghCard border border-ghBorder rounded-xl p-6 md:p-8 transition-all duration-300 glow-hover-teal">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl p-2 rounded-lg bg-ghBg border border-ghBorder">🤝</span>
+                    <div>
+                        <h2 class="text-2xl font-heading font-bold text-neonTeal">Having Our Backs</h2>
+                        <p class="text-xs text-gray-400 font-sans">Accountability & Support</p>
+                    </div>
+                </div>
+                <div class="text-gray-300 space-y-3 font-body leading-relaxed">
+                    <p>
+                        We maintain mutual accountability by providing reasonable advance notice through our group message when personal scheduling conflicts arise.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 rounded-lg bg-ghBg border border-ghBorder">
+                            <h4 class="font-heading font-bold text-white text-sm mb-1">Unresponsive Teammate Protocol</h4>
+                            <p class="text-sm text-gray-300">Send a direct message through group chat, followed by direct follow-up messages from other team members. Most concerns are handled internally via phone conversation or group text.</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-ghBg border border-ghBorder">
+                            <h4 class="font-heading font-bold text-white text-sm mb-1">Instructor Escalation</h4>
+                            <p class="text-sm text-gray-300">If a teammate is non-responsive for more than 1 week (e.g., missing class one week and failing to respond into the new week), we will loop in the instructor.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Success Definition Section (Positioned right before journal) -->
+        <section class="bg-ghCard border border-ghBorder rounded-xl p-6 md:p-8 transition-all duration-300 glow-hover-teal border-l-4 border-l-neonTeal">
+            <div class="flex items-center gap-3 mb-3">
+                <span class="text-2xl p-2 rounded-lg bg-ghBg border border-ghBorder">🌟</span>
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-neonTeal">Success Definition</h2>
+                    <p class="text-xs text-gray-400 font-sans">Our Ultimate Project Goal</p>
+                </div>
+            </div>
+            <blockquote class="text-gray-200 font-heading italic text-lg sm:text-xl leading-relaxed bg-ghBg p-6 rounded-xl border border-ghBorder shadow-inner">
+                "What will make us proud: A working deliverable that our client is happy to use—and uses regularly for their business."
+            </blockquote>
+        </section>
+
+        <!-- Section 6: Our Team Journal -->
+        <section id="journal-section" class="pt-8 border-t border-ghBorder space-y-6">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-neonTeal mb-2">Our Team Journal</h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-electricGreen to-neonTeal mx-auto rounded-full shadow-[0_0_8px_#39ff14]"></div>
+                <p class="mt-4 text-gray-400 font-body max-w-xl mx-auto">
+                    Documenting our 17-week journey (Weeks 1–3 completed; Week 17 is our final week). Click any weekly slot to view entries, post pictures, and share thoughts or struggles.
+                </p>
+            </div>
+
+            <!-- 17 Weekly Slots Grid -->
+            <div id="weeks-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-ghBorder bg-ghBg py-6 text-center text-gray-500 text-sm font-body mt-12">
+        Data Vibing Team Hub &copy; 2026 | CIS 5040 Human-Centered Design
+    </footer>
+
+    <!-- Alert Modal -->
+    <div id="alert-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="glass-panel rounded-xl max-w-sm w-full p-6 text-center transform scale-95 transition-transform duration-200 shadow-2xl" id="alert-content">
+            <div class="w-16 h-16 rounded-full bg-ghBg border-2 border-neonTeal mx-auto flex items-center justify-center mb-4 shadow-[0_0_12px_#00F0FF]">
+                <span class="text-2xl">🔒</span>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-white mb-2" id="alert-title">Authentication Required</h3>
+            <p class="text-gray-300 mb-6 font-body text-sm" id="alert-message">Please sign in to access team journal entries.</p>
+            <button onclick="closeAlert()" class="w-full py-2.5 bg-neonTeal text-ghBg font-bold rounded-lg hover:bg-opacity-80 transition-colors shadow-[0_0_10px_#00F0FF]">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <!-- Journal Modal -->
+    <div id="journal-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
+        <div class="bg-ghBg border border-ghBorder rounded-xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl relative">
+            
+            <div class="flex justify-between items-center p-5 border-b border-ghBorder bg-ghCard rounded-t-xl">
+                <div>
+                    <h3 class="text-2xl font-heading font-bold text-white flex items-center gap-3">
+                        <span class="text-neonTeal" id="modal-week-title">Week X</span>
+                        <span class="text-xs font-sans font-normal text-gray-300 px-2.5 py-1 rounded border border-ghBorder bg-ghBg">Team Log</span>
+                    </h3>
+                </div>
+                <button onclick="closeJournalModal()" class="text-gray-400 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-ghBg border border-transparent hover:border-ghBorder">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="flex-grow overflow-y-auto p-5 space-y-6 font-body" id="journal-entries-container">
+                <div class="text-center text-gray-500 py-10" id="loading-entries">Loading entries...</div>
+            </div>
+
+            <div class="p-5 border-t border-ghBorder bg-ghCard rounded-b-xl space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-400 font-sans">Tag Category:</span>
+                    <button type="button" onclick="setEntryTag('Milestone')" id="tag-milestone" class="tag-badge bg-ghBg border border-ghBorder text-gray-300 hover:border-neonTeal transition-all">Milestone</button>
+                    <button type="button" onclick="setEntryTag('Struggle')" id="tag-struggle" class="tag-badge bg-ghBg border border-ghBorder text-gray-300 hover:border-neonTeal transition-all">Struggle</button>
+                    <button type="button" onclick="setEntryTag('Update')" id="tag-update" class="tag-badge bg-ghBg border border-neonTeal text-neonTeal transition-all">Update</button>
+                </div>
+                <form id="new-entry-form" class="space-y-3 font-body">
+                    <textarea id="entry-text" required rows="3" placeholder="Share thoughts, progress, weekly struggles, or successes with the squad..." class="w-full bg-ghBg border border-ghBorder rounded-lg p-3 text-white focus:outline-none focus:border-neonTeal focus:ring-1 focus:ring-neonTeal resize-none transition-all"></textarea>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="url" id="entry-image" placeholder="Image URL (optional)" class="flex-grow bg-ghBg border border-ghBorder rounded-lg p-3 text-sm text-white focus:outline-none focus:border-neonTeal focus:ring-1 focus:ring-neonTeal transition-all">
+                        <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-neonTeal to-peacockBlue text-ghBg font-bold rounded-lg hover:shadow-[0_0_15px_#00F0FF] transition-all whitespace-nowrap">
+                            Post Entry
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase & App Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithCustomToken, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'data-vibing-hub';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "mock", authDomain: "mock", projectId: "mock"
+        };
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let activeWeekId = null;
+        let allJournalEntries = [];
+        let selectedTag = 'Update';
+
+        const authBtn = document.getElementById('auth-btn');
+        const userInfo = document.getElementById('user-info');
+        const userAvatar = document.getElementById('user-avatar');
+        const userName = document.getElementById('user-name');
+        const weeksGrid = document.getElementById('weeks-grid');
+        const journalModal = document.getElementById('journal-modal');
+        const alertModal = document.getElementById('alert-modal');
+        const modalWeekTitle = document.getElementById('modal-week-title');
+        const journalEntriesContainer = document.getElementById('journal-entries-container');
+        const newEntryForm = document.getElementById('new-entry-form');
+
+        window.setEntryTag = (tag) => {
+            selectedTag = tag;
+            ['Milestone', 'Struggle', 'Update'].forEach(t => {
+                const btn = document.getElementById(`tag-${t.toLowerCase()}`);
+                if (btn) {
+                    if (t === tag) {
+                        btn.className = 'tag-badge bg-ghBg border border-neonTeal text-neonTeal shadow-[0_0_8px_#00F0FF] transition-all';
+                    } else {
+                        btn.className = 'tag-badge bg-ghBg border border-ghBorder text-gray-300 hover:border-neonTeal transition-all';
+                    }
+                }
+            });
+        };
+
+        window.closeAlert = () => {
+            alertModal.classList.add('hidden');
+            document.getElementById('alert-content').classList.remove('scale-100');
+            document.getElementById('alert-content').classList.add('scale-95');
+        };
+        
+        window.showAlert = (title, message) => {
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-message').innerText = message;
+            alertModal.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('alert-content').classList.remove('scale-95');
+                document.getElementById('alert-content').classList.add('scale-100');
+            }, 10);
+        };
+
+        window.closeJournalModal = () => {
+            journalModal.classList.add('hidden');
+            activeWeekId = null;
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            if (user) {
+                authBtn.innerText = 'Sign Out';
+                authBtn.classList.replace('border-neonTeal', 'border-gray-500');
+                authBtn.classList.replace('text-white', 'text-gray-300');
+                authBtn.classList.remove('glow-hover-teal');
+                authBtn.classList.add('hover:bg-gray-800');
+                
+                userInfo.classList.remove('hidden');
+                userInfo.classList.add('flex');
+                
+                const dName = user.displayName || 'Team Member';
+                userName.innerText = dName;
+                userAvatar.src = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(dName)}&background=0d1117&color=00F0FF`;
+            } else {
+                authBtn.innerText = 'Sign In with Google';
+                authBtn.classList.replace('border-gray-500', 'border-neonTeal');
+                authBtn.classList.replace('text-gray-300', 'text-white');
+                authBtn.classList.remove('hover:bg-gray-800');
+                authBtn.classList.add('glow-hover-teal');
+                
+                userInfo.classList.add('hidden');
+                userInfo.classList.remove('flex');
+            }
+        });
+
+        authBtn.addEventListener('click', async () => {
+            if (currentUser) {
+                try {
+                    await signOut(auth);
+                } catch (error) {
+                    window.showAlert("Sign Out Error", error.message);
+                }
+            } else {
+                try {
+                    const provider = new GoogleAuthProvider();
+                    await signInWithPopup(auth, provider);
+                } catch (error) {
+                    window.showAlert("Sign In Error", "Could not sign in with Google. " + error.message);
+                }
+            }
+        });
+
+        async function setupInitialAuth() {
+            if (initialAuthToken) {
+                try {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } catch (e) {
+                    signInAnonymously(auth).catch(err => console.error(err));
+                }
+            } else {
+                signInAnonymously(auth).catch(err => console.log("Anonymous fallback not required"));
+            }
+        }
+        setupInitialAuth();
+
+        function renderWeeksGrid() {
+            weeksGrid.innerHTML = '';
+            for (let i = 1; i <= 17; i++) {
+                const isPast = i <= 3;
+                const isFinal = i === 17;
+                
+                const btn = document.createElement('button');
+                btn.className = `relative overflow-hidden rounded-xl p-4 border transition-all duration-300 flex flex-col items-center justify-center gap-2 aspect-square group`;
+                
+                if (isPast) {
+                    btn.classList.add('bg-ghCard', 'border-electricGreen', 'glow-hover-green');
+                } else if (isFinal) {
+                    btn.classList.add('bg-ghCard', 'border-peacockBlue', 'hover:border-neonTeal', 'glow-hover-teal');
+                } else {
+                    btn.classList.add('bg-ghBg', 'border-ghBorder', 'hover:border-neonTeal', 'glow-hover-teal');
+                }
+
+                btn.innerHTML = `
+                    ${isPast ? '<div class="absolute top-2 right-2 text-xs">✅</div>' : ''}
+                    ${isFinal ? '<div class="absolute top-2 right-2 text-xs">🏁</div>' : ''}
+                    <span class="text-xs font-sans font-medium text-gray-400 group-hover:text-white transition-colors">${isFinal ? 'Final Week' : 'Week'}</span>
+                    <span class="text-3xl font-heading font-bold ${isPast ? 'text-electricGreen' : (isFinal ? 'text-neonTeal' : 'text-gray-200 group-hover:text-neonTeal')}">${i}</span>
+                `;
+
+                btn.onclick = () => handleWeekClick(i);
+                weeksGrid.appendChild(btn);
+            }
+        }
+
+        function handleWeekClick(weekId) {
+            if (!currentUser) {
+                window.showAlert("Login Needed", "Only team members can access and post in the journal. Please sign in with Google first.");
+                return;
+            }
+            
+            activeWeekId = weekId;
+            modalWeekTitle.innerText = weekId === 17 ? 'Final Week (Week 17)' : `Week ${weekId} Journal`;
+            journalModal.classList.remove('hidden');
+            journalModal.querySelector('div').classList.add('fade-in');
+            
+            renderEntriesForActiveWeek();
+        }
+
+        function subscribeToJournals() {
+            if (!db) return;
+            const journalsRef = collection(db, 'artifacts', appId, 'public', 'data', 'journals');
+            
+            onSnapshot(journalsRef, (snapshot) => {
+                allJournalEntries = [];
+                snapshot.forEach(docSnap => {
+                    allJournalEntries.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                
+                allJournalEntries.sort((a, b) => b.timestamp - a.timestamp);
+                
+                if (activeWeekId !== null) {
+                    renderEntriesForActiveWeek();
+                }
+            }, (error) => {
+                console.error("Error fetching journals:", error);
+                if (activeWeekId !== null) {
+                    journalEntriesContainer.innerHTML = `<div class="text-red-400 text-center py-4 font-sans">Error loading entries. Please check connection permissions.</div>`;
+                }
+            });
+        }
+
+        function renderEntriesForActiveWeek() {
+            if (!journalEntriesContainer) return;
+            
+            const weekEntries = allJournalEntries.filter(entry => entry.weekId === activeWeekId);
+            
+            if (weekEntries.length === 0) {
+                journalEntriesContainer.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-12 text-gray-400 font-body">
+                        <div class="text-4xl mb-3">📝</div>
+                        <p class="text-base text-gray-300">No journal entries for ${activeWeekId === 17 ? 'the Final Week' : 'Week ' + activeWeekId} yet.</p>
+                        <p class="text-xs text-gray-500 font-sans mt-1">Be the first squad member to share thoughts or milestones!</p>
+                    </div>`;
+                return;
+            }
+
+            journalEntriesContainer.innerHTML = weekEntries.map(entry => {
+                const tagColor = entry.tag === 'Milestone' ? 'text-electricGreen border-electricGrn/30 bg-electricGreen/10' :
+                                 (entry.tag === 'Struggle' ? 'text-accentOrange border-accentOrange/30 bg-accentOrange/10' : 'text-neonTeal border-neonTeal/30 bg-neonTeal/10');
+                
+                return `
+                    <div class="bg-ghBg border border-ghBorder rounded-xl p-5 shadow-sm fade-in space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="${entry.authorPic || 'https://via.placeholder.com/40'}" alt="${escapeHTML(entry.authorName)}" class="w-10 h-10 rounded-full border border-ghBorder object-cover">
+                                <div>
+                                    <p class="font-bold text-white text-sm">${escapeHTML(entry.authorName)}</p>
+                                    <p class="text-xs text-gray-500 font-sans">${new Date(entry.timestamp).toLocaleString()}</p>
+                                </div>
+                            </div>
+                            <span class="tag-badge border ${tagColor}">${escapeHTML(entry.tag || 'Update')}</span>
+                        </div>
+                        <div class="text-gray-300 text-sm sm:text-base whitespace-pre-wrap font-body leading-relaxed">${escapeHTML(entry.text)}</div>
+                        ${entry.imageUrl ? `<div class="mt-3"><img src="${escapeHTML(entry.imageUrl)}" onerror="this.style.display='none'" alt="Journal attachment" class="rounded-lg max-h-72 object-cover border border-ghBorder w-full bg-black/50"></div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        newEntryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!currentUser || activeWeekId === null) {
+                window.showAlert("Error", "You must be logged in and viewing a week to post.");
+                return;
+            }
+
+            const textInput = document.getElementById('entry-text');
+            const imgInput = document.getElementById('entry-image');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            const text = textInput.value.trim();
+            const imageUrl = imgInput.value.trim();
+
+            if (!text) return;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Posting...';
+            submitBtn.classList.add('opacity-50');
+
+            try {
+                const journalsRef = collection(db, 'artifacts', appId, 'public', 'data', 'journals');
+                await addDoc(journalsRef, {
+                    weekId: activeWeekId,
+                    text: text,
+                    imageUrl: imageUrl,
+                    tag: selectedTag,
+                    authorName: currentUser.displayName || 'Team Member',
+                    authorPic: currentUser.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.displayName || 'T M')}&background=0d1117&color=00F0FF`,
+                    authorId: currentUser.uid,
+                    timestamp: Date.now()
+                });
+
+                textInput.value = '';
+                imgInput.value = '';
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                window.showAlert("Failed to post", error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Post Entry';
+                submitBtn.classList.remove('opacity-50');
+            }
+        });
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag])
+            );
+        }
+
+        renderWeeksGrid();
+        subscribeToJournals();
+    </script>
+</body>
+</html>
