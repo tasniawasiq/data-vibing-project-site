@@ -239,8 +239,8 @@
     /* Invisible proximity zone: approaching the corner brightens the control */
     .menu-hotzone {
       position: absolute;
-      top: -30px; right: -40px;
-      width: 240px; height: 130px;
+      top: -30px; right: -40px; left: -6px;
+      height: 130px;
     }
 
     .menu-toggle {
@@ -1037,6 +1037,36 @@
     .chain li:last-child .chain-item { background: var(--orange); color: var(--navy); border-color: var(--orange); }
 
     /* =========================================================
+       8b. SCREEN 4 — GOAL AND SCOPE
+       ========================================================= */
+    .goal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: start;
+    }
+    .goal-main { display: grid; gap: 1.5rem; }
+    .goal-statement p { font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.35rem); line-height: 1.4; }
+    .goal-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+    .goal-points li { display: grid; align-content: start; gap: 0.4rem; padding-top: 0.8rem; border-top: 1px solid var(--line-soft); }
+    .goal-points h3 { font-size: 1.1rem; color: var(--ice); }
+    .goal-points p { font-size: var(--fs-small); color: var(--muted); line-height: 1.45; }
+    .goal-assume .tag { font-size: 0.75rem; margin-right: 0.3rem; }
+    .scope-note { font-size: var(--fs-small); color: var(--muted); margin-bottom: 1rem; }
+    .scope-list { display: grid; gap: 0.9rem; }
+    .scope-list li { position: relative; padding-left: 1.8rem; line-height: 1.5; }
+    .scope-list li::before {
+      content: "✕";
+      position: absolute;
+      left: 0; top: 0;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--orange);
+    }
+    .scope-list strong { font-weight: 600; color: var(--white); }
+    .scope-list .tag { font-size: 0.75rem; margin-left: 0.3rem; vertical-align: middle; }
+
+    /* =========================================================
        9. TABS (shared: Charter, Interview, Status)
        ========================================================= */
     .tab-btn {
@@ -1079,7 +1109,7 @@
     }
 
     /* =========================================================
-       10. SCREEN 4 — TEAM CHARTER
+       10. SCREEN 5 — TEAM CHARTER
        ========================================================= */
     .charter {
       display: grid;
@@ -1134,7 +1164,7 @@
     }
 
     /* =========================================================
-       11. SCREEN 5 — INTERVIEW PLAN
+       11. SCREEN 6 — INTERVIEW PLAN
        ========================================================= */
     .interview {
       display: grid;
@@ -1157,17 +1187,25 @@
       opacity: 0.7;
     }
 
-    .roles { display: grid; gap: 0; border-top: 1px solid var(--line-soft); }
-    .roles li {
+    .pull-quote {
+      margin: 0;
       display: grid;
-      grid-template-columns: 7rem 1fr;
-      gap: 1rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--line-soft);
+      gap: 0.6rem;
+      padding: 1.1rem 1.4rem;
+      border-left: 2px solid var(--orange);
+      background: rgba(10, 34, 80, 0.45);
+      border-radius: 0 var(--radius-m) var(--radius-m) 0;
     }
-    .roles .who { font-family: var(--font-display); font-weight: 600; }
-    .roles .what { color: var(--muted); }
-    .roles li.lead .what { color: var(--orange); }
+    .pull-quote blockquote { margin: 0; }
+    .pull-quote p {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.2rem, 1rem + 0.9vw, 1.65rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+    .pull-quote figcaption { font-family: var(--font-mono); font-size: var(--fs-small); color: var(--cyan); }
+    .pull-quote figcaption::before { content: "— "; }
 
     .topics { display: grid; gap: 1rem; }
     .topic-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -1206,7 +1244,7 @@
     }
 
     /* =========================================================
-       12. SCREEN 6 — STAKEHOLDER MAP
+       12. SCREEN 7 — STAKEHOLDER MAP
        ========================================================= */
     .stake-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
     .stakes {
@@ -1299,7 +1337,7 @@
     .compact .h2 { font-size: clamp(2rem, 1.3rem + 2.2vw, 3.1rem); }
 
     /* =========================================================
-       13. SCREEN 7 — PROJECT STATUS
+       13. SCREEN 8 — PROJECT STATUS
        ========================================================= */
     .stages {
       display: grid;
@@ -1373,7 +1411,56 @@
     .know-note { font-size: var(--fs-small); color: var(--muted); margin-bottom: 0.7rem; }
 
     /* =========================================================
-       14. SCREEN 8 — CLOSING
+       13b. OUR PRODUCT — coming soon (wink, blink, fade, repeat)
+       ========================================================= */
+    .product-inner { align-items: center; justify-content: center; text-align: center; gap: clamp(1.25rem, 3vh, 2rem); }
+    .product-label {
+      font-family: var(--font-mono);
+      font-size: var(--fs-body);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--cyan);
+    }
+    .cs { display: grid; justify-items: center; gap: clamp(0.75rem, 2vh, 1.25rem); }
+    .cs-face { width: clamp(100px, 14vw, 160px); height: auto; overflow: visible; }
+    .cs-eye { fill: var(--white); }
+    .cs-eye-wink { fill: var(--orange); transform-box: fill-box; transform-origin: 50% 50%; }
+    .cs-lid { fill: none; stroke: var(--orange); stroke-width: 4; stroke-linecap: round; opacity: 0; }
+    .cs-smile { fill: none; stroke: var(--cyan); stroke-width: 3; stroke-linecap: round; }
+    .cs-text {
+      max-width: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(3rem, 1.4rem + 7vw, 8rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    /* 7-second cycle: appear, wink, blink twice, fade away, pause, repeat */
+    .motion-on #product.is-active .cs { animation: csCycle 7s ease-in-out infinite; }
+    .motion-on #product.is-active .cs-eye-wink { animation: csWinkEye 7s ease-in-out infinite; }
+    .motion-on #product.is-active .cs-lid { animation: csWinkLid 7s ease-in-out infinite; }
+    @keyframes csCycle {
+      0% { opacity: 0; transform: translateY(14px); }
+      10% { opacity: 1; transform: none; }
+      34% { opacity: 1; }
+      37% { opacity: 0.1; }
+      40% { opacity: 1; }
+      43% { opacity: 0.1; }
+      46% { opacity: 1; }
+      62%, 100% { opacity: 0; transform: none; }
+    }
+    @keyframes csWinkEye {
+      0%, 16%, 28%, 100% { transform: scaleY(1); opacity: 1; }
+      19%, 25% { transform: scaleY(0.1); opacity: 0; }
+    }
+    @keyframes csWinkLid {
+      0%, 16%, 28%, 100% { opacity: 0; }
+      19%, 25% { opacity: 1; }
+    }
+
+    /* =========================================================
+       14. CLOSING
        ========================================================= */
     .closing-inner { gap: clamp(1.75rem, 4vh, 3rem); }
     .closing-quote {
@@ -1407,7 +1494,8 @@
     }
 
     @media (max-width: 900px) {
-      .split, .trigger-grid, .interview, .stakes, .status-lower, .charter { grid-template-columns: 1fr; }
+      .split, .trigger-grid, .goal-grid, .interview, .stakes, .status-lower, .charter { grid-template-columns: 1fr; }
+      .goal-points { grid-template-columns: 1fr; }
       .charter-tabs { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
       .charter-panel { min-height: 0; }
       .process { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
@@ -1435,7 +1523,6 @@
       .stages { grid-template-columns: 1fr; }
       .matrix-wrap { grid-template-columns: 1.5rem 1fr; }
       .quad { padding: 0.75rem; min-height: 0; }
-      .roles li { grid-template-columns: 5.5rem 1fr; }
       .name-tag { font-size: 0.78rem; }
       .crew-row::after { left: -2%; right: -2%; }
     }
@@ -1501,10 +1588,12 @@
           <li><a href="#home" data-menu-item="home"><span class="menu-num" aria-hidden="true">01</span>Home</a></li>
           <li><a href="#client" data-menu-item="client"><span class="menu-num" aria-hidden="true">02</span>Our Client</a></li>
           <li><a href="#challenge" data-menu-item="challenge"><span class="menu-num" aria-hidden="true">03</span>The Challenge</a></li>
-          <li><a href="#charter" data-menu-item="charter"><span class="menu-num" aria-hidden="true">04</span>Team Charter</a></li>
-          <li><a href="#interview" data-menu-item="interview"><span class="menu-num" aria-hidden="true">05</span>Interview Plan</a></li>
-          <li><a href="#stakeholders" data-menu-item="stakeholders"><span class="menu-num" aria-hidden="true">06</span>Stakeholder Map</a></li>
-          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">07</span>Project Status</a></li>
+          <li><a href="#goal" data-menu-item="goal"><span class="menu-num" aria-hidden="true">04</span>Goal and Scope</a></li>
+          <li><a href="#charter" data-menu-item="charter"><span class="menu-num" aria-hidden="true">05</span>Team Charter</a></li>
+          <li><a href="#interview" data-menu-item="interview"><span class="menu-num" aria-hidden="true">06</span>Interview Plan</a></li>
+          <li><a href="#stakeholders" data-menu-item="stakeholders"><span class="menu-num" aria-hidden="true">07</span>Stakeholder Map</a></li>
+          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">08</span>Project Status</a></li>
+          <li><a href="#product" data-menu-item="product"><span class="menu-num" aria-hidden="true">09</span>Our Product</a></li>
         </ol>
       </div>
     </nav>
@@ -1534,31 +1623,31 @@
             <div class="crew-row" id="crew-row">
               <div class="person" style="--i:0">
                 <button class="person-btn" type="button" data-member="daniel" aria-describedby="desc-daniel">
-                  <span class="fig-lift"><svg class="fig" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:-3deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="30" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#1A2A4C" d="M46 170 L59.2 170 L57.6 285 L48.6 285 Z"/><path fill="#1A2A4C" d="M60.8 170 L74 170 L71.4 285 L62.4 285 Z"/><path fill="rgba(4,13,33,.22)" d="M69 170 L74 170 L71.4 285 L68.4 285 Z"/><rect fill="#0A1224" x="43.6" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#0A1224" x="61" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#DDE7F0" opacity=".85" x="43.2" y="289.2" width="16.2" height="2.2" rx="1.1"/><rect fill="#DDE7F0" opacity=".85" x="60.6" y="289.2" width="16.2" height="2.2" rx="1.1"/><path fill="#1C2B4A" d="M42 104 Q42 96 50 95 L70 95 Q78 96 78 104 L75 176 L45 176 Z"/><path fill="#4F627F" d="M42 104 Q42 96 50 95 L55 95 L55.6 176 L45 176 Z"/><path fill="#4F627F" d="M78 104 Q78 96 70 95 L65 95 L64.4 176 L75 176 Z"/><path fill="none" stroke="#FF6B1A" stroke-width="1.2" d="M55.3 97 L55.8 176 M64.7 97 L64.2 176"/><path fill="#3F5270" d="M52 95 L55.4 105 L57 95 Z M68 95 L64.6 105 L63 95 Z"/><path fill="rgba(4,13,33,.16)" d="M72 96 Q78 96 78 104 L75 176 L69 176 Z"/><g class="arm arm-l"><g class="upper" style="transform-origin:44.5px 96px;--rest:6deg"><rect fill="#4F627F" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="40" y="93" width="9" height="39.4" rx="4.5"/><g class="fore" style="transform-origin:44.5px 130.4px;"><rect fill="#4F627F" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="40.4" y="128.4" width="8.2" height="34" rx="4.1"/><ellipse fill="#B7825A" cx="44.5" cy="164.8" rx="4" ry="5"/></g></g></g><g transform="translate(0 72)"><g class="head" style="transform-origin:60px 24px"><rect fill="#B7825A" x="55" y="10" width="10" height="16"/><path fill="#9C6A45" d="M55 12 q5 5 10 0 v3.5 q-5 4 -10 0 z"/><circle fill="#B7825A" cx="45" cy="2" r="3.4"/><circle fill="#B7825A" cx="75" cy="2" r="3.4"/><ellipse fill="#B7825A" cx="60" cy="0" rx="15" ry="18"/><path fill="#17110D" d="M45.1 -3.5 C45.2 -14.8 51.8 -19.6 60 -19.6 C68.2 -19.6 74.8 -14.8 74.9 -3.5 C73.4 -9.6 68 -13.2 60 -13.2 C52 -13.2 46.6 -9.6 45.1 -3.5 Z"/><path class="brows" fill="none" stroke="#17110D" stroke-width="1.5" stroke-linecap="round" d="M51.5 -5.2 q3 -1.3 6 0 M62.5 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#1A100B"><ellipse cx="54.5" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.5" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#B7825A" x="52.1" y="-1.6" width="4.8" height="2.4"/><rect fill="#B7825A" x="63.1" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#1A100B" stroke-width="1.1" stroke-linecap="round" d="M52.1 0.8 h4.8 M63.1 0.8 h4.8"/></g><path fill="none" stroke="#9C6A45" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/><circle fill="#1A100B" cx="68.6" cy="7.4" r="0.9"/><g class="glasses" style="transform-origin:60px 0px" fill="rgba(221,247,255,.10)" stroke="#0A1226" stroke-width="1.3" stroke-linecap="round"><rect x="50.3" y="-2.9" width="8.4" height="7" rx="2.6"/><rect x="61.3" y="-2.9" width="8.4" height="7" rx="2.6"/><path fill="none" d="M58.7 0 q1.3 -1 2.6 0 M50.3 -0.6 L45.5 -1.6 M69.7 -0.6 L74.5 -1.6"/></g></g></g><g class="arm arm-r glasser"><g class="upper" style="transform-origin:75.5px 96px;--rest:-6deg;--glass-u:-121deg"><rect fill="#4F627F" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="71" y="93" width="9" height="39.4" rx="4.5"/><g class="fore" style="transform-origin:75.5px 130.4px;--glass-f:-150.3deg"><rect fill="#4F627F" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="71.4" y="128.4" width="8.2" height="34" rx="4.1"/><ellipse fill="#B7825A" cx="75.5" cy="164.8" rx="4" ry="5"/></g></g></g></g></svg></span>
+                  <span class="fig-lift"><svg class="fig" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:-3deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="30" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#2A3550" d="M46.5 170 L59.2 170 L57.6 284 L49.4 284 Z"/><path fill="#2A3550" d="M60.8 170 L73.5 170 L70.6 284 L62.4 284 Z"/><path fill="rgba(4,13,33,.22)" d="M68.5 170 L73.5 170 L70.6 284 L67.6 284 Z"/><path fill="#EEF2F6" d="M42.6 290 Q42.6 283.2 49.6 283.2 L58.6 283.2 L58.6 290 Z"/><path fill="#EEF2F6" d="M77.4 290 Q77.4 283.2 70.4 283.2 L61.4 283.2 L61.4 290 Z"/><rect fill="#AEB9C6" x="42.4" y="289.2" width="16.4" height="2.2" rx="1"/><rect fill="#AEB9C6" x="61.2" y="289.2" width="16.4" height="2.2" rx="1"/><rect fill="#FF6B1A" x="56.6" y="284.4" width="2" height="4" rx=".6"/><rect fill="#FF6B1A" x="61.4" y="284.4" width="2" height="4" rx=".6"/><path fill="#10151F" d="M42 104 Q42 96 50 95 L70 95 Q78 96 78 104 L74.5 176 L45.5 176 Z"/><path fill="#10151F" d="M53.5 95 L66.5 95 L65 176 L55 176 Z"/><path fill="#B7825A" d="M55.5 95 Q60 99.5 64.5 95 Z"/><path fill="#3D4861" d="M53.5 95 L49 99 L52.6 107 L50.6 110 L55.4 126 L55 95 Z M66.5 95 L71 99 L67.4 107 L69.4 110 L64.6 126 L65 95 Z"/><path fill="#4A5670" d="M43 110 L55.4 126 L55 176 L45.5 176 Z M77 110 L64.6 126 L65 176 L74.5 176 Z"/><path fill="none" stroke="rgba(4,13,33,.3)" stroke-width=".8" d="M55.4 126 L55 176 M64.6 126 L65 176"/><path fill="#FF6B1A" d="M66 113 l2.4 -3.4 l2 2.4 l2 -2.4 l1.6 3.4 z"/><path fill="none" stroke="rgba(4,13,33,.35)" stroke-width=".8" d="M65.5 113 h8.4"/><path fill="rgba(4,13,33,.16)" d="M72 96 Q78 96 78 104 L74.5 176 L68.5 176 Z"/><g class="arm arm-l"><g class="upper" style="transform-origin:44.5px 96px;--rest:6deg"><rect fill="#4A5670" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="40" y="93" width="9" height="39.4" rx="4.5"/><g class="fore" style="transform-origin:44.5px 130.4px;"><rect fill="#4A5670" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="40.4" y="128.4" width="8.2" height="34" rx="4.1"/><ellipse fill="#B7825A" cx="44.5" cy="164.8" rx="4" ry="5"/></g></g></g><g transform="translate(0 72)"><g class="head" style="transform-origin:60px 24px"><rect fill="#B7825A" x="55" y="10" width="10" height="16"/><path fill="#9C6A45" d="M55 12 q5 5 10 0 v3.5 q-5 4 -10 0 z"/><circle fill="#B7825A" cx="45" cy="2" r="3.4"/><circle fill="#B7825A" cx="75" cy="2" r="3.4"/><ellipse fill="#B7825A" cx="60" cy="0" rx="15" ry="18"/><path fill="#17110D" d="M45.1 -3.5 C45.2 -14.8 51.8 -19.6 60 -19.6 C68.2 -19.6 74.8 -14.8 74.9 -3.5 C73.4 -9.6 68 -13.2 60 -13.2 C52 -13.2 46.6 -9.6 45.1 -3.5 Z"/><path class="brows" fill="none" stroke="#17110D" stroke-width="1.5" stroke-linecap="round" d="M51.5 -5.2 q3 -1.3 6 0 M62.5 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#1A100B"><ellipse cx="54.5" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.5" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#B7825A" x="52.1" y="-1.6" width="4.8" height="2.4"/><rect fill="#B7825A" x="63.1" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#1A100B" stroke-width="1.1" stroke-linecap="round" d="M52.1 0.8 h4.8 M63.1 0.8 h4.8"/></g><path fill="none" stroke="#9C6A45" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/><circle fill="#1A100B" cx="68.6" cy="7.4" r="0.9"/><g class="glasses" style="transform-origin:60px 0px" fill="rgba(221,247,255,.10)" stroke="#0A1226" stroke-width="1.3" stroke-linecap="round"><rect x="50.3" y="-2.9" width="8.4" height="7" rx="2.6"/><rect x="61.3" y="-2.9" width="8.4" height="7" rx="2.6"/><path fill="none" d="M58.7 0 q1.3 -1 2.6 0 M50.3 -0.6 L45.5 -1.6 M69.7 -0.6 L74.5 -1.6"/></g></g></g><g class="arm arm-r glasser"><g class="upper" style="transform-origin:75.5px 96px;--rest:-6deg;--glass-u:-121deg"><rect fill="#4A5670" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="71" y="93" width="9" height="39.4" rx="4.5"/><g class="fore" style="transform-origin:75.5px 130.4px;--glass-f:-150.3deg"><rect fill="#4A5670" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="71.4" y="128.4" width="8.2" height="34" rx="4.1"/><ellipse fill="#B7825A" cx="75.5" cy="164.8" rx="4" ry="5"/></g></g></g></g></svg></span>
                   <span class="name-tag">Daniel Ramirez</span>
                 </button>
-                <p class="sr-only" id="desc-daniel">Daniel is drawn with glasses, very short straight dark hair, and a small beauty mark on his cheek. He wears a slate jacket with an orange zipper over a dark T-shirt.</p>
+                <p class="sr-only" id="desc-daniel">Daniel is drawn with glasses, very short straight dark hair, and a small beauty mark on his cheek. He wears a slate-gray blazer over a black T-shirt, slim chinos, white sneakers, and an orange pocket square.</p>
               </div>
               <div class="person" style="--i:1">
                 <button class="person-btn" type="button" data-member="robert" aria-describedby="desc-robert">
-                  <span class="fig-lift"><svg class="fig" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:4deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="30" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#1B2F57" d="M45 148 L59.2 148 L57.6 285 L48.6 285 Z"/><path fill="#1B2F57" d="M60.8 148 L75 148 L71.4 285 L62.4 285 Z"/><path fill="rgba(4,13,33,.22)" d="M70 148 L75 148 L71.4 285 L68.4 285 Z"/><rect fill="#0A1224" x="43.6" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#0A1224" x="61" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#DDE7F0" opacity=".85" x="43.2" y="289.2" width="16.2" height="2.2" rx="1.1"/><rect fill="#DDE7F0" opacity=".85" x="60.6" y="289.2" width="16.2" height="2.2" rx="1.1"/><path fill="#2D4E8A" d="M41 74 Q41 66 49 65 L71 65 Q79 66 79 74 L76 154 L44 154 Z"/><path fill="#233F72" d="M49 65 Q60 77 71 65 Q66 70 60 70 Q54 70 49 65 Z"/><path fill="none" stroke="#27D9FF" stroke-width="1.1" stroke-linecap="round" d="M56.8 69 L56.2 83 M63.2 69 L63.8 83"/><circle fill="#27D9FF" cx="56.2" cy="84" r="0.9"/><circle fill="#27D9FF" cx="63.8" cy="84" r="0.9"/><path fill="none" stroke="rgba(4,13,33,.35)" stroke-width="1.1" d="M48 142 L51 126 L69 126 L72 142"/><path fill="rgba(4,13,33,.25)" d="M44 149 h32 v5 h-32 z"/><path fill="rgba(4,13,33,.16)" d="M73 66 Q79 66 79 74 L76 154 L70 154 Z"/><g class="arm arm-l watcher"><g class="upper" style="transform-origin:43.5px 66px;--rest:6deg;--watch-u:23.1deg"><rect fill="#2D4E8A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="38.8" y="63" width="9.5" height="42.8" rx="4.8"/><g class="fore" style="transform-origin:43.5px 103.8px;--watch-f:-121deg"><rect fill="#2D4E8A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="39.1" y="101.8" width="8.7" height="37.2" rx="4.3"/><rect fill="#0A1226" x="38.8" y="134" width="9.5" height="3.2" rx="1"/><rect fill="#27D9FF" x="41.9" y="134.4" width="3.2" height="2.4" rx=".6"/><ellipse fill="#C48C62" cx="43.5" cy="141.4" rx="4.3" ry="5.3"/></g></g></g><g transform="translate(0 42)"><g class="head" style="transform-origin:60px 24px"><rect fill="#C48C62" x="55" y="10" width="10" height="16"/><path fill="#A8724C" d="M55 12 q5 5 10 0 v3.5 q-5 4 -10 0 z"/><circle fill="#C48C62" cx="45" cy="2" r="3.4"/><circle fill="#C48C62" cx="75" cy="2" r="3.4"/><ellipse fill="#C48C62" cx="60" cy="0" rx="15" ry="18"/><path fill="#2A1B14" d="M44.5 3 C41.5 -13 49.5 -24 61 -23.5 C70.5 -24.5 78.5 -17 76.5 -6 C77.5 -2 76.5 1.5 75.6 4 C74.4 -3 72.2 -7.5 68 -8.6 C65.6 -12.8 59.8 -12.8 56.8 -9.8 C52.8 -12.6 48.2 -9.6 47 -5.6 C45.6 -3.4 45 0 44.5 3 Z"/><path fill="none" stroke="rgba(255,255,255,.13)" stroke-width="1.1" stroke-linecap="round" d="M49 -15 q4 -3 8 0 q4 3 8 0 M53 -20 q4 -2.5 8 0 q3 2 6 0"/><path class="brows" fill="none" stroke="#2A1B14" stroke-width="1.5" stroke-linecap="round" d="M51.5 -5.2 q3 -1.3 6 0 M62.5 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#1A100B"><ellipse cx="54.5" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.5" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#C48C62" x="52.1" y="-1.6" width="4.8" height="2.4"/><rect fill="#C48C62" x="63.1" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#1A100B" stroke-width="1.1" stroke-linecap="round" d="M52.1 0.8 h4.8 M63.1 0.8 h4.8"/></g><path fill="none" stroke="#A8724C" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/><g class="glasses" style="transform-origin:60px 0px" fill="rgba(221,247,255,.10)" stroke="#0A1226" stroke-width="1.3" stroke-linecap="round"><rect x="50.3" y="-2.9" width="8.4" height="7" rx="2.6"/><rect x="61.3" y="-2.9" width="8.4" height="7" rx="2.6"/><path fill="none" d="M58.7 0 q1.3 -1 2.6 0 M50.3 -0.6 L45.5 -1.6 M69.7 -0.6 L74.5 -1.6"/></g></g></g><g class="arm arm-r waver"><g class="upper" style="transform-origin:76.5px 66px;--rest:-6deg;--wave-u:-122.3deg"><rect fill="#2D4E8A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="71.8" y="63" width="9.5" height="42.8" rx="4.8"/><g class="fore" style="transform-origin:76.5px 103.8px;--wave-f:-74.1deg"><rect fill="#2D4E8A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="72.2" y="101.8" width="8.7" height="37.2" rx="4.3"/><ellipse fill="#C48C62" cx="76.5" cy="141.4" rx="4.3" ry="5.3"/></g></g></g></g></svg></span>
+                  <span class="fig-lift"><svg class="fig" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:4deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="30" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#0E1426" d="M45.5 148 L59.2 148 L57.6 284 L49.4 284 Z"/><path fill="#0E1426" d="M60.8 148 L74.5 148 L70.6 284 L62.4 284 Z"/><path fill="rgba(4,13,33,.22)" d="M69.5 148 L74.5 148 L70.6 284 L67.6 284 Z"/><path fill="#05080F" d="M49 279.5 L57.8 279.5 L58.8 291 L42.6 291 Q42.6 285 49 284 Z"/><path fill="#05080F" d="M71 279.5 L62.2 279.5 L61.2 291 L77.4 291 Q77.4 285 71 284 Z"/><path fill="none" stroke="rgba(221,247,255,.25)" stroke-width=".8" d="M53.5 280.5 v4 M66.5 280.5 v4"/><path fill="#0B1020" d="M41 74 Q41 66 49 65 L71 65 Q79 66 79 74 L75.5 154 L44.5 154 Z"/><path fill="#0B1020" d="M53.5 65 L66.5 65 L65 154 L55 154 Z"/><path fill="#21427F" d="M53.5 65 L49 69 L52.6 77 L50.6 80 L55.4 96 L55 65 Z M66.5 65 L71 69 L67.4 77 L69.4 80 L64.6 96 L65 65 Z"/><path fill="#2A4F9A" d="M42 80 L55.4 96 L55 154 L44.5 154 Z M78 80 L64.6 96 L65 154 L75.5 154 Z"/><path fill="none" stroke="rgba(4,13,33,.3)" stroke-width=".8" d="M55.4 96 L55 154 M64.6 96 L65 154"/><path fill="#27D9FF" d="M67 83 l2.4 -3.4 l2 2.4 l2 -2.4 l1.6 3.4 z"/><path fill="none" stroke="rgba(4,13,33,.35)" stroke-width=".8" d="M66.5 83 h8.4"/><path fill="rgba(4,13,33,.16)" d="M73 66 Q79 66 79 74 L75.5 154 L69.5 154 Z"/><g class="arm arm-l watcher"><g class="upper" style="transform-origin:43.5px 66px;--rest:6deg;--watch-u:23.1deg"><rect fill="#2A4F9A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="38.8" y="63" width="9.5" height="42.8" rx="4.8"/><g class="fore" style="transform-origin:43.5px 103.8px;--watch-f:-121deg"><rect fill="#C48C62" x="40" y="101.8" width="7.1" height="37.2" rx="3.5"/><rect fill="#2A4F9A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="38.8" y="100.8" width="9.5" height="6" rx="2.6"/><rect fill="#0A1226" x="38.8" y="134" width="9.5" height="3.2" rx="1"/><rect fill="#27D9FF" x="41.9" y="134.4" width="3.2" height="2.4" rx=".6"/><ellipse fill="#C48C62" cx="43.5" cy="141.4" rx="4.3" ry="5.3"/></g></g></g><g transform="translate(0 42)"><g class="head" style="transform-origin:60px 24px"><rect fill="#C48C62" x="55" y="10" width="10" height="16"/><path fill="#A8724C" d="M55 12 q5 5 10 0 v3.5 q-5 4 -10 0 z"/><rect fill="#0B1020" x="53.5" y="17.5" width="13" height="9" rx="2.5"/><path fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".8" d="M54 20.5 h12"/><circle fill="#C48C62" cx="45" cy="2" r="3.4"/><circle fill="#C48C62" cx="75" cy="2" r="3.4"/><ellipse fill="#C48C62" cx="60" cy="0" rx="15" ry="18"/><path fill="#2A1B14" d="M44.5 3 C41.5 -13 49.5 -24 61 -23.5 C70.5 -24.5 78.5 -17 76.5 -6 C77.5 -2 76.5 1.5 75.6 4 C74.4 -3 72.2 -7.5 68 -8.6 C65.6 -12.8 59.8 -12.8 56.8 -9.8 C52.8 -12.6 48.2 -9.6 47 -5.6 C45.6 -3.4 45 0 44.5 3 Z"/><path fill="none" stroke="rgba(255,255,255,.13)" stroke-width="1.1" stroke-linecap="round" d="M49 -15 q4 -3 8 0 q4 3 8 0 M53 -20 q4 -2.5 8 0 q3 2 6 0"/><path class="brows" fill="none" stroke="#2A1B14" stroke-width="1.5" stroke-linecap="round" d="M51.5 -5.2 q3 -1.3 6 0 M62.5 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#1A100B"><ellipse cx="54.5" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.5" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#C48C62" x="52.1" y="-1.6" width="4.8" height="2.4"/><rect fill="#C48C62" x="63.1" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#1A100B" stroke-width="1.1" stroke-linecap="round" d="M52.1 0.8 h4.8 M63.1 0.8 h4.8"/></g><path fill="none" stroke="#A8724C" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/><g class="glasses" style="transform-origin:60px 0px" fill="rgba(221,247,255,.10)" stroke="#0A1226" stroke-width="1.3" stroke-linecap="round"><rect x="50.3" y="-2.9" width="8.4" height="7" rx="2.6"/><rect x="61.3" y="-2.9" width="8.4" height="7" rx="2.6"/><path fill="none" d="M58.7 0 q1.3 -1 2.6 0 M50.3 -0.6 L45.5 -1.6 M69.7 -0.6 L74.5 -1.6"/></g></g></g><g class="arm arm-r waver"><g class="upper" style="transform-origin:76.5px 66px;--rest:-6deg;--wave-u:-122.3deg"><rect fill="#2A4F9A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="71.8" y="63" width="9.5" height="42.8" rx="4.8"/><g class="fore" style="transform-origin:76.5px 103.8px;--wave-f:-74.1deg"><rect fill="#C48C62" x="73" y="101.8" width="7.1" height="37.2" rx="3.5"/><rect fill="#2A4F9A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="71.8" y="100.8" width="9.5" height="6" rx="2.6"/><ellipse fill="#C48C62" cx="76.5" cy="141.4" rx="4.3" ry="5.3"/></g></g></g></g></svg></span>
                   <span class="name-tag">Robert Zepeda</span>
                 </button>
-                <p class="sr-only" id="desc-robert">Robert is the tallest of the four. He is drawn with glasses and dark wavy hair, wearing a blue hoodie with neon-blue drawstrings.</p>
+                <p class="sr-only" id="desc-robert">Robert is the tallest of the four. He is drawn with glasses and dark wavy hair, wearing a royal-blue blazer with pushed-up sleeves over a black mock-neck, slim black trousers, Chelsea boots, and a neon-blue pocket square and watch.</p>
               </div>
               <div class="person" style="--i:2">
                 <button class="person-btn" type="button" data-member="tasnia" aria-describedby="desc-tasnia">
-                  <span class="fig-lift"><svg class="fig" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:-2deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="30" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#1A2A4C" d="M46.5 160 L59.2 160 L57.6 285 L48.6 285 Z"/><path fill="#1A2A4C" d="M60.8 160 L73.5 160 L71.4 285 L62.4 285 Z"/><path fill="rgba(4,13,33,.22)" d="M68.5 160 L73.5 160 L71.4 285 L68.4 285 Z"/><rect fill="#0A1224" x="43.6" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#0A1224" x="61" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#DDE7F0" opacity=".85" x="43.2" y="289.2" width="16.2" height="2.2" rx="1.1"/><rect fill="#DDE7F0" opacity=".85" x="60.6" y="289.2" width="16.2" height="2.2" rx="1.1"/><path fill="#27395F" d="M43.5 96 Q43.5 88 51.5 87 L68.5 87 Q76.5 88 76.5 96 L74.5 166 L45.5 166 Z"/><path fill="#C3D8E6" d="M43.5 96 Q43.5 88 51.5 87 L55.5 87 L56.5 178 L43.5 178 Z"/><path fill="#C3D8E6" d="M76.5 96 Q76.5 88 68.5 87 L64.5 87 L63.5 178 L76.5 178 Z"/><path fill="none" stroke="rgba(4,13,33,.18)" stroke-width="1" d="M56 90 L56.9 178 M64 90 L63.1 178"/><path fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-linecap="round" d="M70.5 88 L46.5 156"/><rect fill="#1B2B4D" stroke="#FF6B1A" stroke-width="1" x="39.5" y="154" width="11" height="9" rx="2"/><path fill="rgba(4,13,33,.16)" d="M70.5 88 Q76.5 88 76.5 96 L74.5 166 L68.5 166 Z"/><g class="arm arm-l"><g class="upper" style="transform-origin:46px 88px;--rest:6deg"><rect fill="#C3D8E6" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="41.8" y="85" width="8.5" height="38.5" rx="4.2"/><g class="fore" style="transform-origin:46px 121.5px;"><rect fill="#C3D8E6" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="42.1" y="119.5" width="7.7" height="33.2" rx="3.9"/><ellipse fill="#A87049" cx="46" cy="155.1" rx="3.8" ry="4.8"/></g></g></g><g transform="translate(0 64)"><g class="head" style="transform-origin:60px 24px"><path fill="#1F1410" d="M43.2 -1 C41 -16 50 -23.5 60 -23.5 C70 -23.5 79 -16 76.8 -1 C80 7 79.4 15 76.2 21 C74.2 17 72 17.6 70.2 20.6 L49.8 20.6 C48 17.6 45.8 17 43.8 21 C40.6 15 40 7 43.2 -1 Z"/><rect fill="#A87049" x="55.5" y="10" width="9" height="16"/><path fill="#8E5B39" d="M55.5 12 q4.5 5 9 0 v3.5 q-4.5 4 -9 0 z"/><circle fill="#A87049" cx="45.5" cy="2" r="3.4"/><circle fill="#A87049" cx="74.5" cy="2" r="3.4"/><ellipse fill="#A87049" cx="60" cy="0" rx="14.5" ry="18"/><path fill="#1F1410" d="M44.8 -2 C45.6 -15 52.6 -20.6 61 -20.6 C69.4 -20.6 75.6 -14.6 75.8 -3.4 C72.4 -9.6 66.2 -12.6 59.6 -11.8 C54.6 -13.6 48.6 -9.8 44.8 -2 Z"/><path fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-linecap="round" d="M42.8 6 q2.4 3.5 0 7 M77.2 6 q-2.4 3.5 0 7"/><path class="brows" fill="none" stroke="#1F1410" stroke-width="1.5" stroke-linecap="round" d="M51.7 -5.2 q3 -1.3 6 0 M62.3 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#1A100B"><ellipse cx="54.7" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.3" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#A87049" x="52.3" y="-1.6" width="4.8" height="2.4"/><rect fill="#A87049" x="62.9" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#1A100B" stroke-width="1.1" stroke-linecap="round" d="M52.3 0.8 h4.8 M62.9 0.8 h4.8"/></g><path fill="none" stroke="#8E5B39" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/><g class="glasses" style="transform-origin:60px 0px" fill="rgba(221,247,255,.10)" stroke="#0A1226" stroke-width="1.3" stroke-linecap="round"><rect x="50.5" y="-2.9" width="8.4" height="7" rx="2.6"/><rect x="61.1" y="-2.9" width="8.4" height="7" rx="2.6"/><path fill="none" d="M58.9 0 q1.3 -1 2.2 0 M50.5 -0.6 L46 -1.6 M69.5 -0.6 L74 -1.6"/></g></g></g><g class="arm arm-r waver"><g class="upper" style="transform-origin:74px 88px;--rest:-6deg;--wave-u:-133.1deg"><rect fill="#C3D8E6" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="69.8" y="85" width="8.5" height="38.5" rx="4.2"/><g class="fore" style="transform-origin:74px 121.5px;--wave-f:-51.5deg"><rect fill="#C3D8E6" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="70.2" y="119.5" width="7.7" height="33.2" rx="3.9"/><ellipse fill="#A87049" cx="74" cy="155.1" rx="3.8" ry="4.8"/></g></g></g></g></svg></span>
+                  <span class="fig-lift"><svg class="fig" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:-2deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="30" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#96301A" d="M47 160 L59.4 160 L59 286 L43 286 Z"/><path fill="#96301A" d="M60.6 160 L73 160 L77 286 L61 286 Z"/><path fill="none" stroke="rgba(4,13,33,.3)" stroke-width=".8" d="M52 166 L50 285 M68 166 L70 285"/><path fill="rgba(4,13,33,.22)" d="M68 160 L73 160 L77 286 L72 286 Z"/><path fill="#05080F" d="M58 286 L58 290.6 L41 291.6 Q43 287 49 286 Z"/><path fill="#05080F" d="M62 286 L62 290.6 L79 291.6 Q77 287 71 286 Z"/><path fill="#10151F" d="M43.5 96 Q43.5 88 51.5 87 L68.5 87 Q76.5 88 76.5 96 L74 166 L46 166 Z"/><path fill="#10151F" d="M53.5 87 L66.5 87 L65 130 L55 130 Z"/><path fill="#A87049" d="M54.5 87 Q60 95 65.5 87 Z"/><path fill="#96301A" d="M47 130 L73 130 L74 166 L46 166 Z"/><rect fill="#10151F" x="47" y="129.5" width="26" height="2.2" rx="1"/><path fill="#7A2410" d="M53.5 87 L49 91 L52.6 99 L50.6 102 L55.4 118 L55 87 Z M66.5 87 L71 91 L67.4 99 L69.4 102 L64.6 118 L65 87 Z"/><path fill="#A8381A" d="M44.5 102 L55.4 118 L55 174 L43 174 Z M75.5 102 L64.6 118 L65 174 L77 174 Z"/><path fill="none" stroke="rgba(4,13,33,.3)" stroke-width=".8" d="M55.4 118 L55 174 M64.6 118 L65 174"/><path fill="rgba(4,13,33,.16)" d="M70.5 88 Q76.5 88 76.5 96 L74 166 L68 166 Z"/><g class="arm arm-l"><g class="upper" style="transform-origin:46px 88px;--rest:6deg"><rect fill="#A8381A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="41.8" y="85" width="8.5" height="38.5" rx="4.2"/><g class="fore" style="transform-origin:46px 121.5px;"><rect fill="#A8381A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="42.1" y="119.5" width="7.7" height="33.2" rx="3.9"/><ellipse fill="#A87049" cx="46" cy="155.1" rx="3.8" ry="4.8"/></g></g></g><g transform="translate(0 64)"><g class="head" style="transform-origin:60px 24px"><path fill="#1F1410" d="M43.2 -1 C41 -16 50 -23.5 60 -23.5 C70 -23.5 79 -16 76.8 -1 C80 7 79.4 15 76.2 21 C74.2 17 72 17.6 70.2 20.6 L49.8 20.6 C48 17.6 45.8 17 43.8 21 C40.6 15 40 7 43.2 -1 Z"/><rect fill="#A87049" x="55.5" y="10" width="9" height="16"/><path fill="#8E5B39" d="M55.5 12 q4.5 5 9 0 v3.5 q-4.5 4 -9 0 z"/><circle fill="#A87049" cx="45.5" cy="2" r="3.4"/><circle fill="#A87049" cx="74.5" cy="2" r="3.4"/><ellipse fill="#A87049" cx="60" cy="0" rx="14.5" ry="18"/><path fill="#1F1410" d="M44.8 -2 C45.6 -15 52.6 -20.6 61 -20.6 C69.4 -20.6 75.6 -14.6 75.8 -3.4 C72.4 -9.6 66.2 -12.6 59.6 -11.8 C54.6 -13.6 48.6 -9.8 44.8 -2 Z"/><path fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-linecap="round" d="M42.8 6 q2.4 3.5 0 7 M77.2 6 q-2.4 3.5 0 7"/><path class="brows" fill="none" stroke="#1F1410" stroke-width="1.5" stroke-linecap="round" d="M51.7 -5.2 q3 -1.3 6 0 M62.3 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#1A100B"><ellipse cx="54.7" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.3" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#A87049" x="52.3" y="-1.6" width="4.8" height="2.4"/><rect fill="#A87049" x="62.9" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#1A100B" stroke-width="1.1" stroke-linecap="round" d="M52.3 0.8 h4.8 M62.9 0.8 h4.8"/></g><path fill="none" stroke="#8E5B39" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#1A100B" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/><g fill="#E8B25A"><circle cx="45.8" cy="7.2" r="1.3"/><circle cx="74.2" cy="7.2" r="1.3"/></g><g class="glasses" style="transform-origin:60px 0px" fill="rgba(221,247,255,.10)" stroke="#0A1226" stroke-width="1.3" stroke-linecap="round"><rect x="50.5" y="-2.9" width="8.4" height="7" rx="2.6"/><rect x="61.1" y="-2.9" width="8.4" height="7" rx="2.6"/><path fill="none" d="M58.9 0 q1.3 -1 2.2 0 M50.5 -0.6 L46 -1.6 M69.5 -0.6 L74 -1.6"/></g></g></g><g class="arm arm-r waver"><g class="upper" style="transform-origin:74px 88px;--rest:-6deg;--wave-u:-133.1deg"><rect fill="#A8381A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="69.8" y="85" width="8.5" height="38.5" rx="4.2"/><g class="fore" style="transform-origin:74px 121.5px;--wave-f:-51.5deg"><rect fill="#A8381A" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="70.2" y="119.5" width="7.7" height="33.2" rx="3.9"/><ellipse fill="#A87049" cx="74" cy="155.1" rx="3.8" ry="4.8"/></g></g></g></g></svg></span>
                   <span class="name-tag">Tasnia Binte Wasiq</span>
                 </button>
-                <p class="sr-only" id="desc-tasnia">Tasnia is drawn at medium height with glasses and short-to-medium dark wavy hair. She wears a light-blue cardigan over a navy top and a crossbody bag with an orange strap.</p>
+                <p class="sr-only" id="desc-tasnia">Tasnia is drawn at medium height with glasses and short-to-medium dark wavy hair. She wears a dark red-orange suit, a tailored blazer with high-waisted wide-leg trousers, over a black top, with small gold earrings.</p>
               </div>
               <div class="person" style="--i:3">
                 <button class="person-btn" type="button" data-member="eric" aria-describedby="desc-eric">
-                  <span class="fig-lift"><svg class="fig pose-cross" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:0deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="34" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#1E2C4C" d="M42 170 L59.2 170 L57.6 285 L48.6 285 Z"/><path fill="#1E2C4C" d="M60.8 170 L78 170 L71.4 285 L62.4 285 Z"/><path fill="rgba(4,13,33,.22)" d="M73 170 L78 170 L71.4 285 L68.4 285 Z"/><rect fill="#0A1224" x="43.6" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#0A1224" x="61" y="283.4" width="15.4" height="7.2" rx="3.6"/><rect fill="#DDE7F0" opacity=".85" x="43.2" y="289.2" width="16.2" height="2.2" rx="1.1"/><rect fill="#DDE7F0" opacity=".85" x="60.6" y="289.2" width="16.2" height="2.2" rx="1.1"/><path fill="#2F5E85" d="M37 102 Q37 94 45 93 L75 93 Q83 94 83 102 L79 176 L41 176 Z"/><path fill="none" stroke="#BFE6F5" stroke-width="2" stroke-linecap="round" d="M52.5 93.5 Q60 100 67.5 93.5"/><path fill="rgba(4,13,33,.25)" d="M41 171 h38 v5 h-38 z"/><path fill="rgba(4,13,33,.16)" d="M77 94 Q83 94 83 102 L79 176 L73 176 Z"/><g class="arm arm-l"><g class="upper" style="transform-origin:39.5px 94px;--rest:5deg;--cross-u:-7.5deg"><rect fill="#356A93" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="34" y="91" width="11" height="40.3" rx="5.5"/><g class="fore" style="transform-origin:39.5px 129.3px;--cross-f:-102deg"><rect fill="#356A93" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="34.4" y="127.3" width="10.2" height="34.8" rx="5.1"/><path fill="none" stroke="#BFE6F5" stroke-width="1.6" d="M35 159.6 h9"/><ellipse fill="#6E452C" cx="39.5" cy="164.5" rx="5" ry="6.2"/></g></g></g><g transform="translate(0 70)"><g class="head" style="transform-origin:60px 24px"><rect fill="#6E452C" x="53.5" y="10" width="13" height="16"/><path fill="#573620" d="M53.5 12 q6.5 5 13 0 v3.5 q-6.5 4 -13 0 z"/><circle fill="#6E452C" cx="44" cy="2" r="3.4"/><circle fill="#6E452C" cx="76" cy="2" r="3.4"/><ellipse fill="#6E452C" cx="60" cy="0" rx="16" ry="18"/><path fill="#120B07" d="M44.2 -4.5 C44.2 -16 51.5 -20.8 60 -20.8 C68.5 -20.8 75.8 -16 75.8 -4.5 C74 -11 67.6 -14.2 60 -14.2 C52.4 -14.2 46 -11 44.2 -4.5 Z"/><path fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="0.1 3.2" d="M47 -9 Q60 -22 73 -9 M50 -13 Q60 -21 70 -13"/><path class="brows" fill="none" stroke="#120B07" stroke-width="1.5" stroke-linecap="round" d="M51.5 -5.2 q3 -1.3 6 0 M62.5 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#120804"><ellipse cx="54.5" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.5" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#6E452C" x="52.1" y="-1.6" width="4.8" height="2.4"/><rect fill="#6E452C" x="63.1" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#120804" stroke-width="1.1" stroke-linecap="round" d="M52.1 0.8 h4.8 M63.1 0.8 h4.8"/></g><path fill="none" stroke="#573620" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#120804" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#120804" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/></g></g><g class="arm arm-r"><g class="upper" style="transform-origin:80.5px 94px;--rest:-5deg;--cross-u:11.7deg"><rect fill="#356A93" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="75" y="91" width="11" height="40.3" rx="5.5"/><g class="fore" style="transform-origin:80.5px 129.3px;--cross-f:108.5deg"><rect fill="#356A93" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="75.4" y="127.3" width="10.2" height="34.8" rx="5.1"/><path fill="none" stroke="#BFE6F5" stroke-width="1.6" d="M76 159.6 h9"/><ellipse fill="#6E452C" cx="80.5" cy="164.5" rx="5" ry="6.2"/></g></g></g></g></svg></span>
+                  <span class="fig-lift"><svg class="fig pose-cross" viewBox="0 0 120 300" aria-hidden="true" focusable="false" style="--tilt:0deg"><ellipse fill="rgba(0,0,0,.35)" cx="60" cy="292" rx="34" ry="3.6"/><g class="body" style="transform-origin:60px 290px"><path fill="#171B24" d="M43 170 L59.2 170 L57.6 284 L49.4 284 Z"/><path fill="#171B24" d="M60.8 170 L77 170 L70.6 284 L62.4 284 Z"/><path fill="rgba(4,13,33,.22)" d="M72 170 L77 170 L70.6 284 L67.6 284 Z"/><path fill="#05080F" d="M42.6 291 Q42.6 283.6 50 283.6 L58.6 283.6 L58.6 291 Z"/><path fill="#05080F" d="M77.4 291 Q77.4 283.6 70 283.6 L61.4 283.6 L61.4 291 Z"/><path fill="none" stroke="rgba(255,235,210,.35)" stroke-width=".9" stroke-linecap="round" d="M47 286 h6 M73 286 h-6"/><path fill="#1C212B" d="M37 102 Q37 94 45 93 L75 93 Q83 94 83 102 L78 176 L42 176 Z"/><path fill="#CFE4F2" d="M53.5 93 L66.5 93 L65 176 L55 176 Z"/><path fill="#6E452C" d="M55.6 93 L60 102 L64.4 93 Z"/><path fill="#CFE4F2" stroke="rgba(4,13,33,.35)" stroke-width=".7" d="M55.6 92.5 L52 97 L57.4 100 Z M64.4 92.5 L68 97 L62.6 100 Z"/><path fill="#0C0F15" d="M53.5 93 L49 97 L52.6 105 L50.6 108 L55.4 124 L55 93 Z M66.5 93 L71 97 L67.4 105 L69.4 108 L64.6 124 L65 93 Z"/><path fill="#1C212B" d="M38 108 L55.4 124 L55 176 L42 176 Z M82 108 L64.6 124 L65 176 L78 176 Z"/><path fill="none" stroke="rgba(4,13,33,.3)" stroke-width=".8" d="M55.4 124 L55 176 M64.6 124 L65 176"/><path fill="rgba(4,13,33,.16)" d="M77 94 Q83 94 83 102 L78 176 L72 176 Z"/><g class="arm arm-l"><g class="upper" style="transform-origin:39.5px 94px;--rest:5deg;--cross-u:-7.5deg"><rect fill="#1C212B" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="34" y="91" width="11" height="40.3" rx="5.5"/><g class="fore" style="transform-origin:39.5px 129.3px;--cross-f:-102deg"><rect fill="#1C212B" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="34.4" y="127.3" width="10.2" height="34.8" rx="5.1"/><path fill="none" stroke="#CFE4F2" stroke-width="1.6" d="M35 159.6 h9"/><ellipse fill="#6E452C" cx="39.5" cy="164.5" rx="5" ry="6.2"/></g></g></g><g transform="translate(0 70)"><g class="head" style="transform-origin:60px 24px"><rect fill="#6E452C" x="53.5" y="10" width="13" height="16"/><path fill="#573620" d="M53.5 12 q6.5 5 13 0 v3.5 q-6.5 4 -13 0 z"/><circle fill="#6E452C" cx="44" cy="2" r="3.4"/><circle fill="#6E452C" cx="76" cy="2" r="3.4"/><ellipse fill="#6E452C" cx="60" cy="0" rx="16" ry="18"/><path fill="#120B07" d="M44.2 -4.5 C44.2 -16 51.5 -20.8 60 -20.8 C68.5 -20.8 75.8 -16 75.8 -4.5 C74 -11 67.6 -14.2 60 -14.2 C52.4 -14.2 46 -11 44.2 -4.5 Z"/><path fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="0.1 3.2" d="M47 -9 Q60 -22 73 -9 M50 -13 Q60 -21 70 -13"/><path class="brows" fill="none" stroke="#120B07" stroke-width="1.5" stroke-linecap="round" d="M51.5 -5.2 q3 -1.3 6 0 M62.5 -5.2 q3 -1.3 6 0"/><g class="eyes"><g class="pupils" fill="#120804"><ellipse cx="54.5" cy="1" rx="1.7" ry="2.1"/><ellipse cx="65.5" cy="1" rx="1.7" ry="2.1"/></g></g><g class="lids"><rect fill="#6E452C" x="52.1" y="-1.6" width="4.8" height="2.4"/><rect fill="#6E452C" x="63.1" y="-1.6" width="4.8" height="2.4"/><path fill="none" stroke="#120804" stroke-width="1.1" stroke-linecap="round" d="M52.1 0.8 h4.8 M63.1 0.8 h4.8"/></g><path fill="none" stroke="#573620" stroke-width="1.2" stroke-linecap="round" d="M60 3.5 q-1.6 3 0.6 4"/><path class="mouth-bored" fill="none" stroke="#120804" stroke-width="1.3" stroke-linecap="round" d="M56.6 11 q3.4 -0.5 6.8 0.3"/><path class="mouth-happy" fill="none" stroke="#120804" stroke-width="1.3" stroke-linecap="round" d="M55.4 9.8 q4.6 4.4 9.2 0"/></g></g><g class="arm arm-r"><g class="upper" style="transform-origin:80.5px 94px;--rest:-5deg;--cross-u:11.7deg"><rect fill="#1C212B" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="75" y="91" width="11" height="40.3" rx="5.5"/><g class="fore" style="transform-origin:80.5px 129.3px;--cross-f:108.5deg"><rect fill="#1C212B" stroke="rgba(4,13,33,.45)" stroke-width=".8" x="75.4" y="127.3" width="10.2" height="34.8" rx="5.1"/><path fill="none" stroke="#CFE4F2" stroke-width="1.6" d="M76 159.6 h9"/><ellipse fill="#6E452C" cx="80.5" cy="164.5" rx="5" ry="6.2"/></g></g></g></g></svg></span>
                   <span class="name-tag">Eric Harris</span>
                 </button>
-                <p class="sr-only" id="desc-eric">Eric has a broad, solid build and short textured black hair. He wears a blue crewneck sweater with light-blue trim at the collar and cuffs.</p>
+                <p class="sr-only" id="desc-eric">Eric has a broad, solid build and short textured black hair. He wears a black suit over a light-blue shirt with an open collar, and black shoes.</p>
               </div>
             </div>
             <figcaption id="crew-caption" class="sr-only">
@@ -1667,7 +1756,51 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 4 — TEAM CHARTER ===================== -->
+    <!-- ===================== SCREEN 4 — GOAL AND SCOPE ===================== -->
+    <section class="panel compact" id="goal" data-menu="goal" data-label="Goal and Scope" aria-labelledby="goal-heading">
+      <div class="panel-inner">
+        <div class="panel-head">
+          <h2 class="h2" id="goal-heading" data-heading tabindex="-1">What We Will and Won't Build</h2>
+        </div>
+
+        <div class="goal-grid">
+          <div class="goal-main">
+            <div class="design-question goal-statement">
+              <span class="label mono">Project goal</span>
+              <p>Our project will help VMR Trucking track daily load deliveries and store shipment information as it happens, so everything needed for taxes is ready at the end of the year. We'll know we succeeded when bookkeeping becomes faster and more accurate, and the solution should also work for other small trucking businesses that still keep their books on paper.</p>
+            </div>
+
+            <ul class="goal-points">
+              <li>
+                <h3>Mirrors the two books</h3>
+                <p>Digital versions of the logbook and the accounts book, so the move from paper to digital feels familiar, simple, and quick.</p>
+              </li>
+              <li>
+                <h3>Multiple languages</h3>
+                <p>We plan to offer the tool in different languages so more owner-operators can use it comfortably.</p>
+              </li>
+              <li>
+                <h3>Beyond one client</h3>
+                <p>Built for anyone who does their bookkeeping on paper or without electronic storage.</p>
+                <p class="goal-assume"><span class="tag tag-assumption">Assumption</span> Many small trucking businesses work under dispatchers and brokers across the state.</p>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="reality scope" aria-labelledby="scope-heading">
+            <div class="reality-head"><h3 class="h3" id="scope-heading">Out of scope</h3></div>
+            <p class="scope-note">If a request lands here, the answer is no for this project.</p>
+            <ul class="scope-list">
+              <li><strong>Dispatch integration.</strong> Orders from the dispatcher are not connected to the tool.</li>
+              <li><strong>Tax calculation.</strong> We organize the records needed at tax time; we don't calculate the business's taxes.</li>
+              <li><strong>Delivery planning and delays.</strong> No predicted delivery plans, and no tracking of pickups missed because of delays. <span class="tag tag-assumption">Tentative</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCREEN 5 — TEAM CHARTER ===================== -->
     <section class="panel" id="charter" data-menu="charter" data-label="Team Charter" aria-labelledby="charter-heading">
       <div class="panel-inner">
         <div class="panel-head">
@@ -1739,7 +1872,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 5 — INTERVIEW PLAN ===================== -->
+    <!-- ===================== SCREEN 6 — INTERVIEW PLAN ===================== -->
     <section class="panel" id="interview" data-menu="interview" data-label="Interview Plan" aria-labelledby="interview-heading">
       <div class="panel-inner">
         <div class="interview">
@@ -1750,15 +1883,10 @@
             <h2 class="h2" id="interview-heading" data-heading tabindex="-1">Listening Before Designing</h2>
             <p class="lede">Human-centered design begins by understanding how people currently work, what frustrates them, and what a successful change would feel like to them.</p>
 
-            <div>
-              <h3 class="h3" style="margin-bottom:.6rem">Interview roles</h3>
-              <ul class="roles">
-                <li class="lead"><span class="who">Tasnia</span><span class="what">Lead interviewer</span></li>
-                <li><span class="who">Daniel</span><span class="what">Note-taker</span></li>
-                <li><span class="who">Robert</span><span class="what">Follow-up lead and timekeeper</span></li>
-                <li><span class="who">Eric</span><span class="what">Follow-up lead and observer</span></li>
-              </ul>
-            </div>
+            <figure class="pull-quote">
+              <blockquote><p>We interviewed our client to understand what their ideal product looks like.</p></blockquote>
+              <figcaption>Robert Zepeda</figcaption>
+            </figure>
           </div>
 
           <div class="topics" data-tabs>
@@ -1805,7 +1933,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 6 — STAKEHOLDER MAP ===================== -->
+    <!-- ===================== SCREEN 7 — STAKEHOLDER MAP ===================== -->
     <section class="panel compact" id="stakeholders" data-menu="stakeholders" data-label="Stakeholder Map" aria-labelledby="stake-heading">
       <div class="panel-inner">
         <div class="stake-head">
@@ -1865,7 +1993,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 7 — PROJECT STATUS ===================== -->
+    <!-- ===================== SCREEN 8 — PROJECT STATUS ===================== -->
     <section class="panel compact" id="status" data-menu="status" data-label="Project Status" aria-labelledby="status-heading">
       <div class="panel-inner">
         <div class="panel-head">
@@ -1887,7 +2015,7 @@
             <h3>Empathize</h3>
             <ul class="stage-list">
               <li>Interview plan created</li>
-              <li>Team interview roles assigned</li>
+              <li>Client interview conducted</li>
               <li>Affinity themes identified</li>
             </ul>
           </li>
@@ -1965,8 +2093,24 @@
       </div>
     </section>
 
+    <!-- ===================== SCREEN 9 — OUR PRODUCT ===================== -->
+    <section class="panel" id="product" data-menu="product" data-label="Our Product" aria-labelledby="product-heading">
+      <div class="panel-inner product-inner">
+        <h2 class="product-label" id="product-heading" data-heading tabindex="-1">Our Product</h2>
+        <div class="cs">
+          <svg class="cs-face" viewBox="0 0 120 64" aria-hidden="true" focusable="false">
+            <circle class="cs-eye" cx="36" cy="22" r="7"/>
+            <circle class="cs-eye cs-eye-wink" cx="84" cy="22" r="7"/>
+            <path class="cs-lid" d="M75 22 q9 7 18 0"/>
+            <path class="cs-smile" d="M38 44 q22 15 44 0"/>
+          </svg>
+          <p class="cs-text">Coming soon</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== CLOSING ===================== -->
-    <section class="panel" id="closing" data-menu="status" data-label="Closing" aria-labelledby="closing-heading">
+    <section class="panel" id="closing" data-menu="product" data-label="Closing" aria-labelledby="closing-heading">
       <div class="panel-inner closing-inner">
         <h2 class="closing-quote" id="closing-heading" data-heading tabindex="-1">
           We are not designing for the client.
@@ -1986,7 +2130,7 @@
   <nav class="deck-nav" aria-label="Section controls">
     <button class="nav-btn nav-back" id="btn-back" type="button"><span aria-hidden="true">←</span> Back</button>
     <div class="progress">
-      <p class="page-indicator" aria-hidden="true"><span class="now" id="page-now">01</span> / <span id="page-total">08</span></p>
+      <p class="page-indicator" aria-hidden="true"><span class="now" id="page-now">01</span> / <span id="page-total">10</span></p>
       <div class="road" id="road">
         <span class="road-fill" id="road-fill"></span>
       </div>
@@ -2417,8 +2561,8 @@
       clearTimeout(idle.blink);
     }
 
-    /* Entrance plays once per browser session */
-    var introDone = false; /* plays once per page load, not on every return to this screen */
+    /* Entrance plays once per page load, not on every return to this screen */
+    var introDone = false;
 
     function homeActiveChanged(active) {
       if (!active) { stopIdle(); return; }
@@ -2436,6 +2580,7 @@
       if (document.hidden) stopIdle();
       else if (current === 0) startIdle();
     });
+
     /* Motion toggle (header) */
     var motionBtn = $('#motion-toggle');
     function setMotion(on, save) {
