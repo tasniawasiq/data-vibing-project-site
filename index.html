@@ -1037,6 +1037,36 @@
     .chain li:last-child .chain-item { background: var(--orange); color: var(--navy); border-color: var(--orange); }
 
     /* =========================================================
+       8b. SCREEN 4 — GOAL AND SCOPE
+       ========================================================= */
+    .goal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: start;
+    }
+    .goal-main { display: grid; gap: 1.5rem; }
+    .goal-statement p { font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.35rem); line-height: 1.4; }
+    .goal-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+    .goal-points li { display: grid; align-content: start; gap: 0.4rem; padding-top: 0.8rem; border-top: 1px solid var(--line-soft); }
+    .goal-points h3 { font-size: 1.1rem; color: var(--ice); }
+    .goal-points p { font-size: var(--fs-small); color: var(--muted); line-height: 1.45; }
+    .goal-assume .tag { font-size: 0.75rem; margin-right: 0.3rem; }
+    .scope-note { font-size: var(--fs-small); color: var(--muted); margin-bottom: 1rem; }
+    .scope-list { display: grid; gap: 0.9rem; }
+    .scope-list li { position: relative; padding-left: 1.8rem; line-height: 1.5; }
+    .scope-list li::before {
+      content: "✕";
+      position: absolute;
+      left: 0; top: 0;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--orange);
+    }
+    .scope-list strong { font-weight: 600; color: var(--white); }
+    .scope-list .tag { font-size: 0.75rem; margin-left: 0.3rem; vertical-align: middle; }
+
+    /* =========================================================
        9. TABS (shared: Charter, Interview, Status)
        ========================================================= */
     .tab-btn {
@@ -1079,7 +1109,7 @@
     }
 
     /* =========================================================
-       10. SCREEN 4 — TEAM CHARTER
+       10. SCREEN 5 — TEAM CHARTER
        ========================================================= */
     .charter {
       display: grid;
@@ -1134,7 +1164,7 @@
     }
 
     /* =========================================================
-       11. SCREEN 5 — INTERVIEW PLAN
+       11. SCREEN 6 — INTERVIEW PLAN
        ========================================================= */
     .interview {
       display: grid;
@@ -1157,17 +1187,25 @@
       opacity: 0.7;
     }
 
-    .roles { display: grid; gap: 0; border-top: 1px solid var(--line-soft); }
-    .roles li {
+    .pull-quote {
+      margin: 0;
       display: grid;
-      grid-template-columns: 7rem 1fr;
-      gap: 1rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--line-soft);
+      gap: 0.6rem;
+      padding: 1.1rem 1.4rem;
+      border-left: 2px solid var(--orange);
+      background: rgba(10, 34, 80, 0.45);
+      border-radius: 0 var(--radius-m) var(--radius-m) 0;
     }
-    .roles .who { font-family: var(--font-display); font-weight: 600; }
-    .roles .what { color: var(--muted); }
-    .roles li.lead .what { color: var(--orange); }
+    .pull-quote blockquote { margin: 0; }
+    .pull-quote p {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.2rem, 1rem + 0.9vw, 1.65rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+    .pull-quote figcaption { font-family: var(--font-mono); font-size: var(--fs-small); color: var(--cyan); }
+    .pull-quote figcaption::before { content: "— "; }
 
     .topics { display: grid; gap: 1rem; }
     .topic-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -1206,7 +1244,7 @@
     }
 
     /* =========================================================
-       12. SCREEN 6 — STAKEHOLDER MAP
+       12. SCREEN 7 — STAKEHOLDER MAP
        ========================================================= */
     .stake-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
     .stakes {
@@ -1299,7 +1337,7 @@
     .compact .h2 { font-size: clamp(2rem, 1.3rem + 2.2vw, 3.1rem); }
 
     /* =========================================================
-       13. SCREEN 7 — PROJECT STATUS
+       13. SCREEN 8 — PROJECT STATUS
        ========================================================= */
     .stages {
       display: grid;
@@ -1422,7 +1460,7 @@
     }
 
     /* =========================================================
-       14. SCREEN 8 — CLOSING
+       14. CLOSING
        ========================================================= */
     .closing-inner { gap: clamp(1.75rem, 4vh, 3rem); }
     .closing-quote {
@@ -1456,7 +1494,8 @@
     }
 
     @media (max-width: 900px) {
-      .split, .trigger-grid, .interview, .stakes, .status-lower, .charter { grid-template-columns: 1fr; }
+      .split, .trigger-grid, .goal-grid, .interview, .stakes, .status-lower, .charter { grid-template-columns: 1fr; }
+      .goal-points { grid-template-columns: 1fr; }
       .charter-tabs { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
       .charter-panel { min-height: 0; }
       .process { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
@@ -1484,7 +1523,6 @@
       .stages { grid-template-columns: 1fr; }
       .matrix-wrap { grid-template-columns: 1.5rem 1fr; }
       .quad { padding: 0.75rem; min-height: 0; }
-      .roles li { grid-template-columns: 5.5rem 1fr; }
       .name-tag { font-size: 0.78rem; }
       .crew-row::after { left: -2%; right: -2%; }
     }
@@ -1550,11 +1588,12 @@
           <li><a href="#home" data-menu-item="home"><span class="menu-num" aria-hidden="true">01</span>Home</a></li>
           <li><a href="#client" data-menu-item="client"><span class="menu-num" aria-hidden="true">02</span>Our Client</a></li>
           <li><a href="#challenge" data-menu-item="challenge"><span class="menu-num" aria-hidden="true">03</span>The Challenge</a></li>
-          <li><a href="#charter" data-menu-item="charter"><span class="menu-num" aria-hidden="true">04</span>Team Charter</a></li>
-          <li><a href="#interview" data-menu-item="interview"><span class="menu-num" aria-hidden="true">05</span>Interview Plan</a></li>
-          <li><a href="#stakeholders" data-menu-item="stakeholders"><span class="menu-num" aria-hidden="true">06</span>Stakeholder Map</a></li>
-          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">07</span>Project Status</a></li>
-          <li><a href="#product" data-menu-item="product"><span class="menu-num" aria-hidden="true">08</span>Our Product</a></li>
+          <li><a href="#goal" data-menu-item="goal"><span class="menu-num" aria-hidden="true">04</span>Goal and Scope</a></li>
+          <li><a href="#charter" data-menu-item="charter"><span class="menu-num" aria-hidden="true">05</span>Team Charter</a></li>
+          <li><a href="#interview" data-menu-item="interview"><span class="menu-num" aria-hidden="true">06</span>Interview Plan</a></li>
+          <li><a href="#stakeholders" data-menu-item="stakeholders"><span class="menu-num" aria-hidden="true">07</span>Stakeholder Map</a></li>
+          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">08</span>Project Status</a></li>
+          <li><a href="#product" data-menu-item="product"><span class="menu-num" aria-hidden="true">09</span>Our Product</a></li>
         </ol>
       </div>
     </nav>
@@ -1717,7 +1756,51 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 4 — TEAM CHARTER ===================== -->
+    <!-- ===================== SCREEN 4 — GOAL AND SCOPE ===================== -->
+    <section class="panel compact" id="goal" data-menu="goal" data-label="Goal and Scope" aria-labelledby="goal-heading">
+      <div class="panel-inner">
+        <div class="panel-head">
+          <h2 class="h2" id="goal-heading" data-heading tabindex="-1">What We Will and Won't Build</h2>
+        </div>
+
+        <div class="goal-grid">
+          <div class="goal-main">
+            <div class="design-question goal-statement">
+              <span class="label mono">Project goal</span>
+              <p>Our project will help VMR Trucking track daily load deliveries and store shipment information as it happens, so everything needed for taxes is ready at the end of the year. We'll know we succeeded when bookkeeping becomes faster and more accurate, and the solution should also work for other small trucking businesses that still keep their books on paper.</p>
+            </div>
+
+            <ul class="goal-points">
+              <li>
+                <h3>Mirrors the two books</h3>
+                <p>Digital versions of the logbook and the accounts book, so the move from paper to digital feels familiar, simple, and quick.</p>
+              </li>
+              <li>
+                <h3>Multiple languages</h3>
+                <p>We plan to offer the tool in different languages so more owner-operators can use it comfortably.</p>
+              </li>
+              <li>
+                <h3>Beyond one client</h3>
+                <p>Built for anyone who does their bookkeeping on paper or without electronic storage.</p>
+                <p class="goal-assume"><span class="tag tag-assumption">Assumption</span> Many small trucking businesses work under dispatchers and brokers across the state.</p>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="reality scope" aria-labelledby="scope-heading">
+            <div class="reality-head"><h3 class="h3" id="scope-heading">Out of scope</h3></div>
+            <p class="scope-note">If a request lands here, the answer is no for this project.</p>
+            <ul class="scope-list">
+              <li><strong>Dispatch integration.</strong> Orders from the dispatcher are not connected to the tool.</li>
+              <li><strong>Tax calculation.</strong> We organize the records needed at tax time; we don't calculate the business's taxes.</li>
+              <li><strong>Delivery planning and delays.</strong> No predicted delivery plans, and no tracking of pickups missed because of delays. <span class="tag tag-assumption">Tentative</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCREEN 5 — TEAM CHARTER ===================== -->
     <section class="panel" id="charter" data-menu="charter" data-label="Team Charter" aria-labelledby="charter-heading">
       <div class="panel-inner">
         <div class="panel-head">
@@ -1789,7 +1872,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 5 — INTERVIEW PLAN ===================== -->
+    <!-- ===================== SCREEN 6 — INTERVIEW PLAN ===================== -->
     <section class="panel" id="interview" data-menu="interview" data-label="Interview Plan" aria-labelledby="interview-heading">
       <div class="panel-inner">
         <div class="interview">
@@ -1800,15 +1883,10 @@
             <h2 class="h2" id="interview-heading" data-heading tabindex="-1">Listening Before Designing</h2>
             <p class="lede">Human-centered design begins by understanding how people currently work, what frustrates them, and what a successful change would feel like to them.</p>
 
-            <div>
-              <h3 class="h3" style="margin-bottom:.6rem">Interview roles</h3>
-              <ul class="roles">
-                <li class="lead"><span class="who">Tasnia</span><span class="what">Lead interviewer</span></li>
-                <li><span class="who">Daniel</span><span class="what">Note-taker</span></li>
-                <li><span class="who">Robert</span><span class="what">Follow-up lead and timekeeper</span></li>
-                <li><span class="who">Eric</span><span class="what">Follow-up lead and observer</span></li>
-              </ul>
-            </div>
+            <figure class="pull-quote">
+              <blockquote><p>We interviewed our client to understand what their ideal product looks like.</p></blockquote>
+              <figcaption>Robert Zepeda</figcaption>
+            </figure>
           </div>
 
           <div class="topics" data-tabs>
@@ -1855,7 +1933,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 6 — STAKEHOLDER MAP ===================== -->
+    <!-- ===================== SCREEN 7 — STAKEHOLDER MAP ===================== -->
     <section class="panel compact" id="stakeholders" data-menu="stakeholders" data-label="Stakeholder Map" aria-labelledby="stake-heading">
       <div class="panel-inner">
         <div class="stake-head">
@@ -1915,7 +1993,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 7 — PROJECT STATUS ===================== -->
+    <!-- ===================== SCREEN 8 — PROJECT STATUS ===================== -->
     <section class="panel compact" id="status" data-menu="status" data-label="Project Status" aria-labelledby="status-heading">
       <div class="panel-inner">
         <div class="panel-head">
@@ -1937,7 +2015,7 @@
             <h3>Empathize</h3>
             <ul class="stage-list">
               <li>Interview plan created</li>
-              <li>Team interview roles assigned</li>
+              <li>Client interview conducted</li>
               <li>Affinity themes identified</li>
             </ul>
           </li>
@@ -2015,7 +2093,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 8 — OUR PRODUCT ===================== -->
+    <!-- ===================== SCREEN 9 — OUR PRODUCT ===================== -->
     <section class="panel" id="product" data-menu="product" data-label="Our Product" aria-labelledby="product-heading">
       <div class="panel-inner product-inner">
         <h2 class="product-label" id="product-heading" data-heading tabindex="-1">Our Product</h2>
@@ -2052,7 +2130,7 @@
   <nav class="deck-nav" aria-label="Section controls">
     <button class="nav-btn nav-back" id="btn-back" type="button"><span aria-hidden="true">←</span> Back</button>
     <div class="progress">
-      <p class="page-indicator" aria-hidden="true"><span class="now" id="page-now">01</span> / <span id="page-total">08</span></p>
+      <p class="page-indicator" aria-hidden="true"><span class="now" id="page-now">01</span> / <span id="page-total">10</span></p>
       <div class="road" id="road">
         <span class="road-fill" id="road-fill"></span>
       </div>
@@ -2483,8 +2561,8 @@
       clearTimeout(idle.blink);
     }
 
-    /* Entrance plays once per browser session */
-    var introDone = false; /* plays once per page load, not on every return to this screen */
+    /* Entrance plays once per page load, not on every return to this screen */
+    var introDone = false;
 
     function homeActiveChanged(active) {
       if (!active) { stopIdle(); return; }
@@ -2502,6 +2580,7 @@
       if (document.hidden) stopIdle();
       else if (current === 0) startIdle();
     });
+
     /* Motion toggle (header) */
     var motionBtn = $('#motion-toggle');
     function setMotion(on, save) {
