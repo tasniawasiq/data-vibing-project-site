@@ -1337,7 +1337,75 @@
     .compact .h2 { font-size: clamp(2rem, 1.3rem + 2.2vw, 3.1rem); }
 
     /* =========================================================
-       13. SCREEN 8 — PROJECT STATUS
+       12b. SCREEN 8 — PERSONAS
+       ========================================================= */
+    .persona-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .persona-tabs .tab-btn {
+      width: auto;
+      gap: 0.75rem;
+      padding: 0.45rem 1.1rem 0.45rem 0.5rem;
+      border-color: var(--line-soft);
+    }
+    .persona-tabs .tab-btn[aria-selected="true"] { border-color: var(--orange); }
+    .p-mono {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ice);
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+    .tab-btn[aria-selected="true"] .p-mono { background: var(--orange); border-color: var(--orange); color: var(--navy); }
+    .p-tab-text { display: grid; line-height: 1.2; }
+    .p-tab-role { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+
+    .persona {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      padding: clamp(1.25rem, 3vw, 2.25rem);
+      background: rgba(10, 34, 80, 0.4);
+      border-top: 1px solid var(--line);
+      border-radius: 0 0 var(--radius-m) var(--radius-m);
+    }
+    .persona-id { display: grid; align-content: start; gap: 1.1rem; }
+    .persona-role { font-family: var(--font-mono); font-size: var(--fs-small); color: var(--cyan); }
+    .persona-name { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); letter-spacing: -0.03em; }
+    .persona-summary { font-size: var(--fs-lede); line-height: 1.5; color: var(--ice); }
+    .persona-quote { margin: 0.4rem 0 0; display: grid; gap: 0.5rem; padding-left: 1.1rem; border-left: 2px solid var(--orange); }
+    .persona-quote blockquote { margin: 0; }
+    .persona-quote p {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+    .persona-quote figcaption { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+
+    .persona-details { display: grid; align-content: start; gap: 1.4rem; }
+    .persona-block h4 {
+      margin-bottom: 0.55rem;
+      font-size: 1.02rem;
+      letter-spacing: 0;
+      color: var(--ice);
+    }
+    .persona-block .ticks li { color: var(--white); }
+    .persona-block.frustrations .ticks li::before { background: var(--orange); }
+    .persona-block.success {
+      padding: 1rem 1.15rem;
+      background: var(--orange-soft);
+      border-radius: var(--radius-m);
+    }
+    .persona-block.success p { line-height: 1.5; }
+
+    /* =========================================================
+       13. SCREEN 9 — PROJECT STATUS
        ========================================================= */
     .stages {
       display: grid;
@@ -1411,7 +1479,7 @@
     .know-note { font-size: var(--fs-small); color: var(--muted); margin-bottom: 0.7rem; }
 
     /* =========================================================
-       13b. OUR PRODUCT — coming soon (wink, blink, fade, repeat)
+       13b. SCREEN 10 — OUR PRODUCT — coming soon (wink, blink, fade, repeat)
        ========================================================= */
     .product-inner { align-items: center; justify-content: center; text-align: center; gap: clamp(1.25rem, 3vh, 2rem); }
     .product-label {
@@ -1494,7 +1562,7 @@
     }
 
     @media (max-width: 900px) {
-      .split, .trigger-grid, .goal-grid, .interview, .stakes, .status-lower, .charter { grid-template-columns: 1fr; }
+      .split, .trigger-grid, .goal-grid, .interview, .stakes, .persona, .status-lower, .charter { grid-template-columns: 1fr; }
       .goal-points { grid-template-columns: 1fr; }
       .charter-tabs { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
       .charter-panel { min-height: 0; }
@@ -1592,8 +1660,9 @@
           <li><a href="#charter" data-menu-item="charter"><span class="menu-num" aria-hidden="true">05</span>Team Charter</a></li>
           <li><a href="#interview" data-menu-item="interview"><span class="menu-num" aria-hidden="true">06</span>Interview Plan</a></li>
           <li><a href="#stakeholders" data-menu-item="stakeholders"><span class="menu-num" aria-hidden="true">07</span>Stakeholder Map</a></li>
-          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">08</span>Project Status</a></li>
-          <li><a href="#product" data-menu-item="product"><span class="menu-num" aria-hidden="true">09</span>Our Product</a></li>
+          <li><a href="#personas" data-menu-item="personas"><span class="menu-num" aria-hidden="true">08</span>Personas</a></li>
+          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">09</span>Project Status</a></li>
+          <li><a href="#product" data-menu-item="product"><span class="menu-num" aria-hidden="true">10</span>Our Product</a></li>
         </ol>
       </div>
     </nav>
@@ -1993,7 +2062,123 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 8 — PROJECT STATUS ===================== -->
+    <!-- ===================== SCREEN 8 — PERSONAS ===================== -->
+    <section class="panel compact" id="personas" data-menu="personas" data-label="Personas" aria-labelledby="personas-heading">
+      <div class="panel-inner">
+        <div class="stake-head">
+          <div class="panel-head">
+            <h2 class="h2" id="personas-heading" data-heading tabindex="-1">The People Around the Load</h2>
+            <p class="lede">Three people whose workday shapes how a delivery gets done. Select a persona to meet them.</p>
+          </div>
+          <span class="tag tag-assumption">Drafted September 29, 2026</span>
+        </div>
+
+        <div class="personas" data-tabs>
+          <div class="persona-tabs" role="tablist" aria-label="Personas">
+            <button class="tab-btn" role="tab" id="pt-1" aria-controls="pp-1" aria-selected="true"><span class="p-mono" aria-hidden="true">J</span><span class="p-tab-text">Joseph<span class="p-tab-role">Dispatcher / broker</span></span></button>
+            <button class="tab-btn" role="tab" id="pt-2" aria-controls="pp-2" aria-selected="false" tabindex="-1"><span class="p-mono" aria-hidden="true">H</span><span class="p-tab-text">Helga<span class="p-tab-role">Truck driver</span></span></button>
+            <button class="tab-btn" role="tab" id="pt-3" aria-controls="pp-3" aria-selected="false" tabindex="-1"><span class="p-mono" aria-hidden="true">A</span><span class="p-tab-text">Arnulfo<span class="p-tab-role">Warehouse worker</span></span></button>
+          </div>
+
+          <div class="tab-panel persona" role="tabpanel" id="pp-1" aria-labelledby="pt-1" tabindex="0">
+            <div class="persona-id">
+              <p class="persona-role">Dispatcher / broker</p>
+              <h3 class="persona-name">Joseph</h3>
+              <p class="persona-summary">A focused manager whose daily goal is making sure every load is assigned and every delivery is completed.</p>
+              <figure class="persona-quote">
+                <blockquote><p>“Not enough to go around.”</p></blockquote>
+                <figcaption>Representative quote</figcaption>
+              </figure>
+            </div>
+            <div class="persona-details">
+              <div class="persona-block">
+                <h4>Goals</h4>
+                <ul class="ticks">
+                    <li>Assign all of the day’s load pickups.</li>
+                    <li>Distribute shipments fairly, so every carrier gets at least one high-demand assignment.</li>
+                    <li>Give each load to a dependable, experienced carrier.</li>
+                </ul>
+              </div>
+              <div class="persona-block frustrations">
+                <h4>Frustrations</h4>
+                <ul class="ticks">
+                    <li>Low-paying load assignments.</li>
+                    <li>Concerns about favoritism.</li>
+                    <li>Complaints from operators who feel they aren’t getting the best shipments.</li>
+                </ul>
+              </div>
+              <div class="persona-block success">
+                <h4>Success looks like</h4>
+                <p>Operators are content, and complaints go down.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel persona" role="tabpanel" id="pp-2" aria-labelledby="pt-2" tabindex="0" hidden>
+            <div class="persona-id">
+              <p class="persona-role">Truck driver</p>
+              <h3 class="persona-name">Helga</h3>
+              <p class="persona-summary">Delivers shipments to and from warehouses across California.</p>
+              <figure class="persona-quote">
+                <blockquote><p>“Another warehouse delay. I’m going to have to tell dispatch I won’t make the third delivery on time.”</p></blockquote>
+                <figcaption>Representative quote</figcaption>
+              </figure>
+            </div>
+            <div class="persona-details">
+              <div class="persona-block">
+                <h4>Goals</h4>
+                <ul class="ticks">
+                    <li>Deliver every shipment on time.</li>
+                    <li>Complete at least two deliveries a day.</li>
+                </ul>
+              </div>
+              <div class="persona-block frustrations">
+                <h4>Frustrations</h4>
+                <ul class="ticks">
+                    <li>Loading and unloading delays at warehouses.</li>
+                    <li>Truck maintenance and repairs.</li>
+                    <li>High diesel costs.</li>
+                </ul>
+              </div>
+              <div class="persona-block success">
+                <h4>Success looks like</h4>
+                <p>Making three deliveries and getting home before 1:00 PM. That usually happens when warehouse delays are minimal, or the shipment is already loaded for a quick swap.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel persona" role="tabpanel" id="pp-3" aria-labelledby="pt-3" tabindex="0" hidden>
+            <div class="persona-id">
+              <p class="persona-role">Warehouse worker</p>
+              <h3 class="persona-name">Arnulfo</h3>
+              <p class="persona-summary">Loads and unloads trucks as trailers back up to the dock, then moves the goods inside the warehouse.</p>
+              <figure class="persona-quote">
+                <blockquote><p>“Getting the load in and out of here quickly and efficiently makes my life easier!”</p></blockquote>
+                <figcaption>Representative quote</figcaption>
+              </figure>
+            </div>
+            <div class="persona-details">
+              <div class="persona-block">
+                <h4>Goals</h4>
+                <ul class="ticks">
+                    <li>Unload trucks quickly.</li>
+                </ul>
+              </div>
+              <div class="persona-block frustrations">
+                <h4>Frustrations</h4>
+                <ul class="ticks">
+                    <li>Forklift breakdowns in the middle of loading or unloading.</li>
+                </ul>
+              </div>
+              <div class="persona-block success">
+                <h4>Success looks like</h4>
+                <p>Loading and unloading go smoothly, with no problems.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCREEN 9 — PROJECT STATUS ===================== -->
     <section class="panel compact" id="status" data-menu="status" data-label="Project Status" aria-labelledby="status-heading">
       <div class="panel-inner">
         <div class="panel-head">
@@ -2026,6 +2211,7 @@
               <li>Core tracking and tax-reporting problem identified</li>
               <li>Human-centered design question drafted</li>
               <li>Stakeholders mapped preliminarily</li>
+              <li>Three personas drafted</li>
             </ul>
           </li>
           <li class="stage-card next">
@@ -2034,7 +2220,7 @@
             <ul class="stage-list">
               <li>Validate assumptions with the client</li>
               <li>Analyze interview findings</li>
-              <li>Develop evidence-based personas</li>
+              <li>Validate personas with the client</li>
               <li>Define solution requirements</li>
               <li>Begin low-fidelity prototyping</li>
             </ul>
@@ -2093,7 +2279,7 @@
       </div>
     </section>
 
-    <!-- ===================== SCREEN 9 — OUR PRODUCT ===================== -->
+    <!-- ===================== SCREEN 10 — OUR PRODUCT ===================== -->
     <section class="panel" id="product" data-menu="product" data-label="Our Product" aria-labelledby="product-heading">
       <div class="panel-inner product-inner">
         <h2 class="product-label" id="product-heading" data-heading tabindex="-1">Our Product</h2>
@@ -2130,7 +2316,7 @@
   <nav class="deck-nav" aria-label="Section controls">
     <button class="nav-btn nav-back" id="btn-back" type="button"><span aria-hidden="true">←</span> Back</button>
     <div class="progress">
-      <p class="page-indicator" aria-hidden="true"><span class="now" id="page-now">01</span> / <span id="page-total">10</span></p>
+      <p class="page-indicator" aria-hidden="true"><span class="now" id="page-now">01</span> / <span id="page-total">11</span></p>
       <div class="road" id="road">
         <span class="road-fill" id="road-fill"></span>
       </div>
