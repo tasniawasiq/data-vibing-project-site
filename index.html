@@ -287,6 +287,11 @@
       border-radius: var(--radius-m);
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
       animation: menuIn 0.28s var(--ease);
+      /* Taller lists than the screen scroll inside the menu */
+      max-height: calc(100vh - var(--header-h) - 24px);
+      max-height: calc(100dvh - var(--header-h) - env(safe-area-inset-top, 0px) - 24px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
     .menu-panel[hidden] { display: none; }
     @keyframes menuIn {
@@ -2008,6 +2013,97 @@
     }
     .motion-off .panel, .motion-off .panel.is-before { transform: none; }
     .motion-off .sweep { display: none; }
+
+    /* =========================================================
+       17. SCREENS 10-11 — CLIENT DEMO + CHANGE LOG
+       ========================================================= */
+    .demo-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); align-items: start; }
+    .demo-slide { margin: 0; display: grid; gap: 0.6rem; }
+    .demo-walk { margin: 0; display: grid; gap: 0.8rem; align-content: start; }
+    .demo-walk-title { color: var(--ice); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .demo-versions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; align-items: start; }
+    .demo-versions li { display: grid; gap: 0.35rem; min-width: 0; }
+    .demo-versions a { display: block; height: clamp(220px, 36vh, 340px); padding: 0.6rem; overflow: hidden; background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-m); transition: border-color 0.2s ease; }
+    .demo-versions a:hover, .demo-versions a:focus-visible { border-color: var(--orange); }
+    .demo-versions img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .demo-v-name { font-family: var(--font-display); font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.95rem; }
+    .demo-v-note { font-size: var(--fs-small); color: var(--muted); }
+    .demo-walk-tip { font-size: var(--fs-small); }
+    @media (max-width: 600px) {
+      .demo-versions { grid-template-columns: 1fr; }
+      .demo-versions a { height: 380px; }
+    }
+    .demo-slide a { display: block; border: 1px solid var(--line); border-radius: var(--radius-m); overflow: hidden; transition: border-color 0.2s ease; }
+    .demo-slide a:hover, .demo-slide a:focus-visible { border-color: var(--orange); }
+    .demo-slide img { display: block; width: 100%; height: auto; }
+    .demo-steps { display: grid; gap: 0.75rem; counter-reset: step; }
+    .demo-steps li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 0.2rem 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line-soft); }
+    .demo-steps li::before { counter-increment: step; content: "0" counter(step); grid-row: span 2; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--cyan); }
+    .demo-steps li:last-child::before { color: var(--orange); }
+    .demo-steps h3 { font-size: 1rem; color: var(--ice); }
+    .demo-steps p { font-size: var(--fs-small); color: var(--muted); line-height: 1.5; }
+    .demo-outcome { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+    .demo-outcome p { color: var(--ice); }
+
+    /* Project Status: the phase the team is in right now */
+    .stage-card.now { border-top-color: var(--orange); background: var(--orange-soft); box-shadow: inset 0 0 0 1px rgba(255, 107, 26, 0.35); }
+    .stage-card.now .stage-list li::before { content: "→"; color: var(--orange); }
+
+    .cl-goal p { font-size: clamp(1rem, 0.92rem + 0.45vw, 1.25rem); line-height: 1.45; }
+    .cl-goal .cl-test { margin-top: 0.6rem; font-family: var(--font-body); font-weight: 500; font-size: var(--fs-small); color: var(--orange); }
+
+    /* The sheet: no background, just gridlines, like an Excel tab */
+    .cl-sheet { position: relative; cursor: pointer; }
+    .cl-tabbar { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; padding: 0.45rem 0.2rem; font-size: var(--fs-small); color: var(--muted); }
+    .cl-file { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--ice); }
+    .cl-file .xl { display: inline-grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 3px; background: #188038; color: #fff; font-size: 0.9rem; line-height: 1; }
+    .cl-lock { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .cl-live { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 3px rgba(39, 217, 255, 0.2); }
+    .cl-table { width: 100%; border-collapse: collapse; background: transparent; font-size: var(--fs-small); line-height: 1.45; }
+    .cl-table th, .cl-table td { border: 1px solid var(--line-soft); padding: 0.6rem 0.7rem; text-align: left; vertical-align: top; }
+    .cl-table thead th { font-family: var(--font-display); font-weight: 600; color: var(--cyan); border-bottom-color: var(--line); white-space: nowrap; }
+    .cl-table td { color: var(--white); }
+    .cl-table .cl-id { font-family: var(--font-mono); color: var(--muted); white-space: nowrap; }
+    .cl-table .cl-date { white-space: nowrap; }
+    .cl-table .cl-how { display: block; margin-top: 0.3rem; color: var(--muted); }
+    .cl-table .cl-team { display: block; margin-top: 0.35rem; color: var(--muted); }
+    .cl-sheet:hover .cl-table td, .cl-sheet:focus-within .cl-table td { border-color: var(--line); }
+    .tag-approved { color: var(--cyan); border: 1px solid var(--cyan); }
+    .tag-approved::before { background: var(--cyan); }
+    .tag-tabled { color: var(--ice); border: 1px dashed var(--muted); }
+    .tag-tabled::before { border: 1.5px solid var(--ice); }
+    .tag-declined { color: var(--orange); border: 1px solid var(--orange); }
+    .tag-declined::before { background: transparent; border-radius: 0; width: 8px; height: 2px; background-color: var(--orange); }
+
+    /* Hover note: view only, editing needs the PIN */
+    .cl-hint {
+      position: absolute; z-index: 3; top: 0.2rem; right: 0;
+      max-width: 22rem; padding: 0.6rem 0.85rem;
+      background: var(--navy); border: 1px solid var(--orange); border-radius: var(--radius-s);
+      font-size: var(--fs-small); color: var(--ice); line-height: 1.45;
+      opacity: 0; transform: translateY(-4px); pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .cl-hint strong { color: var(--orange); }
+    .cl-sheet:hover .cl-hint { opacity: 1; transform: none; }
+    .cl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+    .cl-actions .muted { font-size: var(--fs-small); }
+    .cl-source { font-size: var(--fs-small); color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .demo-grid { grid-template-columns: 1fr; }
+    }
+    /* Phones: each row becomes a card, so nothing scrolls sideways */
+    @media (max-width: 760px) {
+      .cl-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .cl-table, .cl-table tbody, .cl-table tr, .cl-table td { display: block; width: 100%; }
+      .cl-table tr { border: 1px solid var(--line-soft); border-radius: var(--radius-s); margin-bottom: 0.9rem; padding: 0.35rem 0; }
+      .cl-table td { border: 0; padding: 0.35rem 0.85rem; display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.6rem; }
+      .cl-table td::before { content: attr(data-label); grid-row: span 2; font-family: var(--font-display); font-weight: 600; color: var(--cyan); }
+      .cl-table .cl-how, .cl-table .cl-team { grid-column: 2; margin-top: 0; }
+      .cl-table .tag { justify-self: start; }
+      .cl-hint { position: static; max-width: none; margin-bottom: 0.6rem; opacity: 1; transform: none; }
+    }
   </style>
 </head>
 
@@ -2051,9 +2147,11 @@
           <li><a href="#stakeholders" data-menu-item="stakeholders"><span class="menu-num" aria-hidden="true">07</span>Stakeholder Map</a></li>
           <li><a href="#personas" data-menu-item="personas"><span class="menu-num" aria-hidden="true">08</span>Personas</a></li>
           <li><a href="#flow" data-menu-item="flow"><span class="menu-num" aria-hidden="true">09</span>Process Flow</a></li>
-          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">10</span>Project Status</a></li>
-          <li><a href="#journal" data-menu-item="journal"><span class="menu-num" aria-hidden="true">11</span>Our Journal</a></li>
-          <li><a href="#product" data-menu-item="product"><span class="menu-num" aria-hidden="true">12</span>Our Product</a></li>
+          <li><a href="#demo" data-menu-item="demo"><span class="menu-num" aria-hidden="true">10</span>Client Demo</a></li>
+          <li><a href="#changelog" data-menu-item="changelog"><span class="menu-num" aria-hidden="true">11</span>Change Log</a></li>
+          <li><a href="#status" data-menu-item="status"><span class="menu-num" aria-hidden="true">12</span>Project Status</a></li>
+          <li><a href="#journal" data-menu-item="journal"><span class="menu-num" aria-hidden="true">13</span>Our Journal</a></li>
+          <li><a href="#product" data-menu-item="product"><span class="menu-num" aria-hidden="true">14</span>Our Product</a></li>
         </ol>
       </div>
     </nav>
@@ -2675,104 +2773,188 @@
       </div>
     </section>
 
+    <!-- ===================== SCREEN 10 — CLIENT DEMO ===================== -->
+    <!-- To swap a screen: upload a new demo-v1.png, demo-v2.png or demo-v3.png with the same name. -->
+    <section class="panel compact" id="demo" data-menu="demo" data-label="Client Demo" aria-labelledby="demo-heading">
+      <div class="panel-inner">
+        <div class="panel-head">
+          <span class="tag tag-alert">First client demo · Oct 24, 2026</span>
+          <h2 class="h2" id="demo-heading" data-heading tabindex="-1">Our Demo Agenda</h2>
+          <p class="lede">Our five-step plan for the first demo, and the three versions we walked Violeta through.</p>
+        </div>
+
+        <div class="demo-grid">
+          <figure class="demo-walk">
+            <figcaption class="demo-walk-title mono">Screen-by-screen walkthrough</figcaption>
+            <ol class="demo-versions">
+              <li>
+                <a href="demo-v1.png" target="_blank" rel="noopener" aria-label="Open the Version 1 screen full size"><img src="demo-v1.png" width="511" height="713" loading="lazy" alt="Version 1 home screen: VMR Trucking log header, Today and This week tabs, expense and delivery cards, a yellow Log button, and tool tiles."></a>
+                <span class="demo-v-name">Version 1</span>
+                <span class="demo-v-note">Simple</span>
+              </li>
+              <li>
+                <a href="demo-v2.png" target="_blank" rel="noopener" aria-label="Open the Version 2 screen full size"><img src="demo-v2.png" width="505" height="787" loading="lazy" alt="Version 2 home screen: adds a truck picker, Plan a trip, and an Owner dashboard tile to the Version 1 layout."></a>
+                <span class="demo-v-name">Version 2</span>
+                <span class="demo-v-note">More complex</span>
+              </li>
+              <li>
+                <a href="demo-v3.png" target="_blank" rel="noopener" aria-label="Open the Version 3 screen full size"><img src="demo-v3.png" width="1073" height="642" loading="lazy" alt="Version 3: a wider web layout with a driver form on the left and log shortcuts on the right."></a>
+                <span class="demo-v-name">Version 3</span>
+                <span class="demo-v-note">Complex web version</span>
+              </li>
+            </ol>
+            <p class="muted demo-walk-tip">Tap a screen to open it full size.</p>
+          </figure>
+
+          <ol class="demo-steps" aria-label="The five agenda steps">
+            <li><h3>Roles</h3><p>Robert drove the demo. Tasnia translated Violeta’s needs into technical terms. Daniel and Eric took notes and gave feedback.</p></li>
+            <li><h3>Set the table</h3><p>Three versions of the same app, from simple to complex. Data is not saved yet.</p></li>
+            <li><h3>Meeting goal</h3><p>Get candid reactions: what works, what does not, and which version fits best.</p></li>
+            <li><h3>Project goal</h3><p>Make trucking expenses and revenue easy to track and export for bookkeeping and taxes.</p></li>
+            <li><h3>Demo and react</h3><p>Show V1, then V2, then V3. Pause after each for feedback, and compare at the end.</p></li>
+          </ol>
+        </div>
+
+        <div class="demo-outcome">
+          <p><strong>What she chose:</strong> Version 2’s layout with Version 3’s dashboard.</p>
+          <a class="btn btn-ghost" href="#changelog">See the change log <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCREEN 11 — CHANGE LOG ===================== -->
+    <!-- The table fills itself from the team's Google Sheet (link in the CHANGE LOG script near the end).
+         To add a change: open the sheet and type a new row. Google saves it, and this page shows it on the next visit.
+         The rows below are only a backup copy, shown if the sheet can't be reached. -->
+    <section class="panel compact" id="changelog" data-menu="changelog" data-label="Change Log" aria-labelledby="changelog-heading">
+      <div class="panel-inner">
+        <div class="panel-head">
+          <h2 class="h2" id="changelog-heading" data-heading tabindex="-1">Change Log</h2>
+          <p class="lede">Every request from Violeta, what we decided, and why. Kept up to date through Week 15.</p>
+        </div>
+
+        <div class="design-question cl-goal">
+          <span class="label mono">Project goal</span>
+          <p id="cl-goal-text">Violeta-centered design: usability, tracking expenses and profit, and gathering tax documents.</p>
+          <p class="cl-test">Every change is judged by one question: does it make her day easier, or tax time simpler? If neither, it waits.</p>
+        </div>
+
+        <div class="cl-sheet" id="cl-sheet">
+          <div class="cl-tabbar">
+            <span class="cl-file"><span class="xl" aria-hidden="true">▦</span>Data Vibing Change Log · Google Sheets</span>
+            <span class="cl-lock"><span class="cl-live" aria-hidden="true"></span>Live</span>
+          </div>
+          <p class="cl-hint" role="note"><strong>Live from our Google Sheet.</strong> Edits save automatically. Click the table to open the sheet.</p>
+          <table class="cl-table">
+            <caption class="sr-only">Client change log</caption>
+            <thead>
+              <tr><th scope="col">ID</th><th scope="col">Date</th><th scope="col">What they asked for</th><th scope="col">Who asked</th><th scope="col">Decision</th><th scope="col">Why</th><th scope="col">Where it landed</th></tr>
+            </thead>
+            <tbody id="cl-rows">
+              <tr>
+                <td class="cl-id" data-label="ID">CH-001</td>
+                <td class="cl-date" data-label="Date">Oct 24, 2026</td>
+                <td data-label="What they asked for">Combine Prototype 2 and Prototype 3<span class="cl-how">Use Prototype 2 as the primary layout; add a dashboard link with styling inspired by Prototype 3.</span></td>
+                <td data-label="Who asked">Violeta (owner)</td>
+                <td data-label="Decision"><span class="tag tag-approved">Approved</span></td>
+                <td data-label="Why">Client preferred Prototype 2's layout and Prototype 3's dashboard view.</td>
+                <td data-label="Where it landed">In progress: owner dashboard started in the team's Oct 28 draft; not on the live prototype yet<span class="cl-team">Team status: Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cl-id" data-label="ID">CH-002</td>
+                <td class="cl-date" data-label="Date">Oct 24, 2026</td>
+                <td data-label="What they asked for">Show expense breakdown in profit tile<span class="cl-how">Display revenue minus expenses in the profit tile, with the figures broken out so the profit calculation is clear.</span></td>
+                <td data-label="Who asked">Violeta (owner)</td>
+                <td data-label="Decision"><span class="tag tag-approved">Approved</span></td>
+                <td data-label="Why">Makes it easier to understand why the displayed profit has its value.</td>
+                <td data-label="Where it landed">Not built yet: profit tile shows one number, without the revenue and expense figures<span class="cl-team">Team status: Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cl-id" data-label="ID">CH-003</td>
+                <td class="cl-date" data-label="Date">Oct 24, 2026</td>
+                <td data-label="What they asked for">Remove odometer photo and start-of-day workflow<span class="cl-how">Remove the odometer photo option and the 'Start my day' function; allow users to begin logging directly.</span></td>
+                <td data-label="Who asked">Violeta (owner)</td>
+                <td data-label="Decision"><span class="tag tag-approved">Approved</span></td>
+                <td data-label="Why">Odometer mileage is not routinely tracked unless requested and is already recorded in the logbook; direct logging is simpler.</td>
+                <td data-label="Where it landed">Not built yet: 'Start my day' and odometer photos are still in the Oct 28 draft<span class="cl-team">Team status: Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cl-actions">
+          <a class="btn btn-primary cl-open" id="cl-open" href="https://docs.google.com/spreadsheets/d/1dV6cAKsw59JdhT_UMblwfWcxTkQ5gbJR/edit?usp=sharing" target="_blank" rel="noopener">Open the Google Sheet <span class="arrow" aria-hidden="true">↗</span></a>
+          <span class="muted">Changes made in the sheet show up here on their own.</span>
+        </div>
+        <p class="cl-source" id="cl-source" aria-live="polite">Showing the saved copy.</p>
+      </div>
+    </section>
+
     <!-- ===================== SCREEN 9 — PROJECT STATUS ===================== -->
     <section class="panel compact" id="status" data-menu="status" data-label="Project Status" aria-labelledby="status-heading">
       <div class="panel-inner">
         <div class="panel-head">
           <h2 class="h2" id="status-heading" data-heading tabindex="-1">Where We Are Now</h2>
+          <p class="lede">Our journey so far, phase by phase, following the class timeline.</p>
         </div>
 
-        <ol class="stages" aria-label="Design process stages">
+        <ol class="stages" aria-label="Project phases">
           <li class="stage-card">
-            <div class="stage-top"><span class="mono">01</span><span class="stage-state done">Completed</span></div>
-            <h3>Discover</h3>
-            <ul class="stage-list">
-              <li>Initial client and industry research completed</li>
-              <li>Current manual process identified</li>
-              <li>Early assumptions documented</li>
-            </ul>
-          </li>
-          <li class="stage-card">
-            <div class="stage-top"><span class="mono">02</span><span class="stage-state done">Completed</span></div>
+            <div class="stage-top"><span class="mono">01 · Weeks 3–4</span><span class="stage-state done">Completed</span></div>
             <h3>Empathize</h3>
             <ul class="stage-list">
-              <li>Interview plan created</li>
-              <li>Client interview conducted</li>
-              <li>Affinity themes identified</li>
+              <li>Interviewed Violeta about her day and her books</li>
+              <li>Mapped stakeholders and found five affinity themes</li>
             </ul>
           </li>
           <li class="stage-card">
-            <div class="stage-top"><span class="mono">03</span><span class="stage-state done">Completed</span></div>
+            <div class="stage-top"><span class="mono">02 · Week 5</span><span class="stage-state done">Completed</span></div>
             <h3>Define</h3>
             <ul class="stage-list">
-              <li>Core tracking and tax-reporting problem identified</li>
-              <li>Human-centered design question drafted</li>
-              <li>Stakeholders mapped preliminarily</li>
-              <li>Three personas drafted</li>
+              <li>Core problem: tracking costs and tax records</li>
+              <li>Design question and three personas</li>
+            </ul>
+          </li>
+          <li class="stage-card">
+            <div class="stage-top"><span class="mono">03 · Week 6</span><span class="stage-state done">Completed</span></div>
+            <h3>Ideate</h3>
+            <ul class="stage-list">
+              <li>Process flow of her delivery day</li>
+              <li>First UI sketch, drawn by hand</li>
+            </ul>
+          </li>
+          <li class="stage-card">
+            <div class="stage-top"><span class="mono">04 · Week 7</span><span class="stage-state done">Completed</span></div>
+            <h3>Prototype</h3>
+            <ul class="stage-list">
+              <li>First prototype, VMR Log, published</li>
+              <li>By Oct 24: three versions with different UI/UX</li>
+            </ul>
+          </li>
+          <li class="stage-card">
+            <div class="stage-top"><span class="mono">05 · Week 8</span><span class="stage-state done">Completed</span></div>
+            <h3>Test</h3>
+            <ul class="stage-list">
+              <li>Oct 24: first client demo with Violeta</li>
+              <li>Robert drove. Tasnia translated her needs into technical terms. Daniel and Eric took notes and gave feedback.</li>
+            </ul>
+          </li>
+          <li class="stage-card now">
+            <div class="stage-top"><span class="mono">06 · Weeks 9–15</span><span class="stage-state upcoming">We are here</span></div>
+            <h3>Build</h3>
+            <ul class="stage-list">
+              <li>Oct 25: discussed her requests and logged the changes</li>
+              <li>Oct 28: changes under way in draft 2 of the revised prototype</li>
             </ul>
           </li>
           <li class="stage-card next">
-            <div class="stage-top"><span class="mono">04</span><span class="stage-state upcoming">Up next</span></div>
-            <h3>Next</h3>
+            <div class="stage-top"><span class="mono">07 · Week 16</span><span class="stage-state upcoming">Up next</span></div>
+            <h3>Deliver</h3>
             <ul class="stage-list">
-              <li>Validate assumptions with the client</li>
-              <li>Analyze interview findings</li>
-              <li>Validate personas with the client</li>
-              <li>Define solution requirements</li>
-              <li>Begin low-fidelity prototyping</li>
+              <li>Final presentation and handoff to Violeta</li>
             </ul>
           </li>
         </ol>
-
-        <div class="status-lower">
-          <div class="themes">
-            <h3 class="h3">Affinity themes</h3>
-            <ul class="theme-list">
-              <li>Data Collection</li>
-              <li>Communication</li>
-              <li>Inspiration and Visual Design</li>
-              <li>Application Usability</li>
-              <li>Client Engagement</li>
-            </ul>
-            <p>Themes the team grouped from early notes. They will guide the interview analysis.</p>
-          </div>
-
-          <div class="knowledge" data-tabs>
-            <h3 class="h3">What we know, and what we don’t yet</h3>
-            <div class="know-tabs" role="tablist" aria-label="Certainty of project information">
-              <button class="tab-btn" role="tab" id="kt-1" aria-controls="kp-1" aria-selected="true"><span class="shape full" aria-hidden="true"></span>Confirmed</button>
-              <button class="tab-btn" role="tab" id="kt-2" aria-controls="kp-2" aria-selected="false" tabindex="-1"><span class="shape half" aria-hidden="true"></span>Initial assumptions</button>
-              <button class="tab-btn" role="tab" id="kt-3" aria-controls="kp-3" aria-selected="false" tabindex="-1"><span class="shape open" aria-hidden="true">?</span>Needs validation</button>
-            </div>
-            <div class="tab-panel" role="tabpanel" id="kp-1" aria-labelledby="kt-1" tabindex="0">
-              <p class="know-note">From the client’s project brief.</p>
-              <ul class="know-list confirmed">
-                <li>The business operates with two drivers.</li>
-                <li>Delivery work is received through a dispatcher.</li>
-                <li>Mileage, fuel, receipts, and deliveries are tracked by hand.</li>
-                <li>Tax season showed that the current system needs to improve.</li>
-              </ul>
-            </div>
-            <div class="tab-panel" role="tabpanel" id="kp-2" aria-labelledby="kt-2" tabindex="0" hidden>
-              <p class="know-note">Our working beliefs. Not yet verified.</p>
-              <ul class="know-list assumed">
-                <li>Missing or scattered records are adding to tax-preparation costs.</li>
-                <li>Profitability per delivery is currently hard to see.</li>
-                <li>A solution will only be adopted if it fits the existing daily routine.</li>
-                <li>The dispatcher and tax preparer may shape which records are needed.</li>
-              </ul>
-            </div>
-            <div class="tab-panel" role="tabpanel" id="kp-3" aria-labelledby="kt-3" tabindex="0" hidden>
-              <p class="know-note">Questions the client interview should answer.</p>
-              <ul class="know-list open">
-                <li>Which records are most often lost or incomplete?</li>
-                <li>Would the client prefer an app, website, spreadsheet, or another format?</li>
-                <li>How does the second driver record mileage, fuel, and receipts?</li>
-                <li>What does the tax preparer need to receive, and when?</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -2785,7 +2967,7 @@
         </div>
 
         <!-- To add an entry: copy one <li class="j-entry">, change the date, title, and thought, and give the bubble a new id. -->
-        <ol class="journal-line" style="--entries:4" aria-label="Project journal">
+        <ol class="journal-line" style="--entries:7" aria-label="Project journal">
           <li class="j-entry">
             <button class="j-node" type="button" aria-expanded="false" aria-describedby="jb-1">
               <span class="j-dot" aria-hidden="true"></span>
@@ -2829,6 +3011,39 @@
             <div class="j-bubble" id="jb-3">
               <span class="j-mark" aria-hidden="true">Thought</span>
               <p>Our first draft, VMR Log, is live. Drivers can log a delivery and snap the bill of delivery right from their phone, no app store needed.</p>
+            </div>
+          </li>
+          <li class="j-entry">
+            <button class="j-node" type="button" aria-expanded="false" aria-describedby="jb-4">
+              <span class="j-dot" aria-hidden="true"></span>
+              <span class="j-date">Oct 24, 2026</span>
+              <span class="j-title">3 prototypes, 1st demo</span>
+            </button>
+            <div class="j-bubble" id="jb-4">
+              <span class="j-mark" aria-hidden="true">Thought</span>
+              <p>The UI/UX came easily, and we had three versions ready to show. The real challenge was the database behind a live dashboard.</p>
+            </div>
+          </li>
+          <li class="j-entry">
+            <button class="j-node" type="button" aria-expanded="false" aria-describedby="jb-5">
+              <span class="j-dot" aria-hidden="true"></span>
+              <span class="j-date">Oct 25, 2026</span>
+              <span class="j-title">Changes logged</span>
+            </button>
+            <div class="j-bubble" id="jb-5">
+              <span class="j-mark" aria-hidden="true">Thought</span>
+              <p>Team meeting: we discussed the changes Violeta asked for during the demo, approved them, and logged every one.</p>
+            </div>
+          </li>
+          <li class="j-entry is-next">
+            <button class="j-node" type="button" aria-expanded="false" aria-describedby="jb-6">
+              <span class="j-dot" aria-hidden="true"></span>
+              <span class="j-date">Oct 28, 2026</span>
+              <span class="j-title">Draft 2 with revisions</span>
+            </button>
+            <div class="j-bubble" id="jb-6">
+              <span class="j-mark" aria-hidden="true">Thought</span>
+              <p>Excited? Please wait while we work on it <span aria-label="wink">😉</span></p>
             </div>
           </li>
         </ol>
@@ -3609,6 +3824,135 @@
     show(startIndex < 0 ? 0 : startIndex, { history: 'replace' });
     deck.scrollTop = 0;
     window.scrollTo(0, 0);
+  })();
+  </script>
+
+  <!-- =========================================================
+       CHANGE LOG: fills the table from the team's Google Sheet.
+       Columns are found by their header names, so new rows (and
+       the order of columns) can change without touching this code.
+       To use a different sheet, change SHEET_ID below.
+       ========================================================= -->
+  <script>
+  (function () {
+    'use strict';
+    var SHEET_ID = '1dV6cAKsw59JdhT_UMblwfWcxTkQ5gbJR';
+    var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/export?format=csv';
+    var SHEET_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?usp=sharing';
+    var sheet = document.getElementById('cl-sheet');
+    var rowsEl = document.getElementById('cl-rows');
+    var source = document.getElementById('cl-source');
+    if (!sheet || !rowsEl) return;
+
+    /* Clicking anywhere on the table opens the Google Sheet */
+    sheet.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) return;
+      window.open(SHEET_URL, '_blank', 'noopener');
+    });
+
+    /* Turns CSV text into rows of cells (handles quotes, commas and line breaks inside cells) */
+    function parseCsv(text) {
+      var rows = [], row = [], cell = '', q = false;
+      for (var i = 0; i < text.length; i++) {
+        var c = text[i];
+        if (q) {
+          if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+          else if (c === '"') q = false;
+          else cell += c;
+        } else if (c === '"') q = true;
+        else if (c === ',') { row.push(cell); cell = ''; }
+        else if (c === '\n' || c === '\r') {
+          if (c === '\r' && text[i + 1] === '\n') i++;
+          row.push(cell); rows.push(row); row = []; cell = '';
+        } else cell += c;
+      }
+      if (cell || row.length) { row.push(cell); rows.push(row); }
+      return rows;
+    }
+
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+    function fmtDate(v) {
+      var m = String(v || '').trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (m) {
+        var d = new Date(Date.UTC(+m[3], +m[1] - 1, +m[2]));
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+      }
+      return String(v || '');
+    }
+    function decisionTag(v) {
+      var word = String(v || '').trim().split(/[\s–—-]/)[0];
+      var kind = /^approved$/i.test(word) ? 'approved' : /^tabled$/i.test(word) ? 'tabled' : /^declined$/i.test(word) ? 'declined' : '';
+      if (!kind) return esc(v);
+      return '<span class="tag tag-' + kind + '">' + esc(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) + '</span>';
+    }
+    /* Header name -> our field. Matches the teammate's names and the assignment's names. */
+    var FIELDS = [
+      ['id', /^id$/i],
+      ['date', /date/i],
+      ['ask', /requested change|what they asked/i],
+      ['how', /implementation|details/i],
+      ['why', /reason|why/i],
+      ['decision', /decision/i],
+      ['status', /^status$/i],
+      ['who', /who asked/i],
+      ['landed', /where it landed/i]
+    ];
+
+    function render(table) {
+      var head = -1, cols = {};
+      for (var r = 0; r < table.length && head < 0; r++) {
+        if (table[r].some(function (c) { return /^(requested change|what they asked for)$/i.test(String(c).trim()); })) head = r;
+      }
+      if (head < 0) throw new Error('No header row');
+      table[head].forEach(function (name, i) {
+        FIELDS.forEach(function (f) { if (cols[f[0]] == null && f[1].test(String(name).trim())) cols[f[0]] = i; });
+      });
+      for (var g = 0; g < head; g++) {
+        var m = String(table[g][0] || '').match(/^project goal:\s*(.+)$/i);
+        if (m) {
+          var goal = m[1].split(/\s*Every change is judged/i)[0];
+          document.getElementById('cl-goal-text').textContent = goal;
+        }
+      }
+      function cell(row, key) { return cols[key] == null ? '' : String(row[cols[key]] == null ? '' : row[cols[key]]).trim(); }
+      function orDash(v) { return v ? esc(v) : '<span class="muted">—</span>'; }
+
+      var html = '';
+      table.slice(head + 1).forEach(function (row) {
+        if (!String(cell(row, 'ask')).trim()) return;
+        var how = cell(row, 'how'), status = cell(row, 'status');
+        html += '<tr>' +
+          '<td class="cl-id" data-label="ID">' + esc(cell(row, 'id')) + '</td>' +
+          '<td class="cl-date" data-label="Date">' + esc(fmtDate(cell(row, 'date'))) + '</td>' +
+          '<td data-label="What they asked for">' + esc(cell(row, 'ask')) + (how ? '<span class="cl-how">' + esc(how) + '</span>' : '') + '</td>' +
+          '<td data-label="Who asked">' + orDash(cell(row, 'who')) + '</td>' +
+          '<td data-label="Decision">' + decisionTag(cell(row, 'decision')) + '</td>' +
+          '<td data-label="Why">' + esc(cell(row, 'why')) + '</td>' +
+          '<td data-label="Where it landed">' + orDash(cell(row, 'landed')) + (status ? '<span class="cl-team">Team status: ' + esc(status) + '</span>' : '') + '</td>' +
+          '</tr>';
+      });
+      if (!html) throw new Error('No rows');
+      rowsEl.innerHTML = html;
+      var note = '';
+      for (var n = 0; n < head && !note; n++) {
+        var hit = String(table[n][0] || '').match(/last updated\s*(.+)$/i);
+        if (hit) note = hit[1];
+      }
+      source.textContent = 'Live from the Google Sheet' + (note ? ' · last updated ' + note : '') + '.';
+    }
+
+    function load() {
+      if (!window.fetch) return;
+      fetch(SHEET_CSV, { cache: 'no-store' })
+        .then(function (res) { if (!res.ok) throw new Error(res.status); return res.text(); })
+        .then(function (text) { render(parseCsv(text)); })
+        .catch(function () { source.textContent = 'Showing the saved copy. Open the Google Sheet for the latest version.'; });
+    }
+    load();
   })();
   </script>
 </body>
